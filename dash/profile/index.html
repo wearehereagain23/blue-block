@@ -108,6 +108,28 @@
                 padding-bottom: 70px;
             }
         }
+
+        /* Ensure the Topbar is strictly pinned and opaque */
+        .page-topbar {
+            position: fixed !important;
+            top: 0;
+            width: 100%;
+            z-index: 1001 !important;
+            /* Higher than sidenav and content */
+            background: #01123c !important;
+            /* Matches Blue Block brand navy */
+        }
+
+        /* Force the Nav bar to respect iOS Safe Areas */
+        .navbar {
+            padding-top: env(safe-area-inset-top);
+            height: calc(64px + env(safe-area-inset-top)) !important;
+        }
+
+        /* Prevent content from sliding under the header on start */
+        #main {
+            padding-top: calc(64px + env(safe-area-inset-top)) !important;
+        }
     </style>
 
     <!-- BEGIN VENDOR JS-->
