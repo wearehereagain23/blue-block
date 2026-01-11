@@ -758,6 +758,22 @@
             display: none !important;
             visibility: hidden !important;
         }
+
+        /* Fix Jivosite Full Screen Overlap on iOS */
+        #jivo-iframe-container {
+            top: env(safe-area-inset-top, 20px) !important;
+            height: calc(100% - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 0px)) !important;
+        }
+
+        /* Ensure the widget stays above other elements but below the status bar shield */
+        #jivo-iframe-container.jivo-active {
+            z-index: 1000 !important;
+        }
+
+        /* Extra margin specifically for the Jivosite internal header */
+        div[class^="jivo-host"] [class*="container"] {
+            margin-top: env(safe-area-inset-top, 20px) !important;
+        }
     </style>
 
     <!-- pc view nav Css -->
