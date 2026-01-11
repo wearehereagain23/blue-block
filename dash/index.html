@@ -637,6 +637,17 @@
             z-index: 10;
         }
 
+        /* Fix Jivosite Full Screen Overlap on iOS */
+        #jivo-iframe-container {
+            top: env(safe-area-inset-top, 20px) !important;
+            height: calc(100% - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 0px)) !important;
+        }
+
+        /* Ensure the widget stays above other elements but below the status bar shield */
+        #jivo-iframe-container.jivo-active {
+            z-index: 1000 !important;
+        }
+
         /* Hide Jivosite Default Bubble */
         #jivo-iframe-container,
         .jivo-iframe-container,
