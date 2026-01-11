@@ -131,6 +131,38 @@
         #main {
             padding-top: calc(64px + env(safe-area-inset-top)) !important;
         }
+
+        /* 1. Ensure the topbar spans the entire screen including the notch */
+        .page-topbar {
+            position: fixed !important;
+            top: 0;
+            width: 100%;
+            z-index: 1001 !important;
+            background: #01123c !important;
+            /* Your Brand Navy */
+
+            /* This adds extra space at the top specifically for the iPhone notch/icons */
+            padding-top: env(safe-area-inset-top);
+        }
+
+        /* 2. Adjust the Nav container to stay centered regardless of the extra padding */
+        .navbar-main {
+            height: 64px !important;
+            /* Keeps your original height for the content */
+            display: flex;
+            align-items: center;
+        }
+
+        /* 3. Push the main content down so it doesn't start behind the now-taller header */
+        #main {
+            padding-top: calc(64px + env(safe-area-inset-top)) !important;
+        }
+
+        /* 4. Ensure the background of the app matches the header to hide any leaks */
+        html,
+        body {
+            background-color: #01123c !important;
+        }
     </style>
 
     <!-- BEGIN VENDOR JS-->
