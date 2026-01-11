@@ -1,8 +1,8 @@
 {
     "name": "Cryp Chain",
     "short_name": "Cryp Chain",
-    "start_url": "https://crypchain.onrender.com",
-    "scope": "/crypchain/",
+    "start_url": "https://crypchain.onrender.com/",
+    "scope": "/",
     "display": "standalone",
     "background_color": "#01123c",
     "theme_color": "#01123c",

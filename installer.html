@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Cryp Chain | Terminal Deployment</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#01123c" />
     <link rel="manifest" href="/crypchain/manifest.json" />
     <link rel="apple-touch-icon" href="/crypchain.png" />
@@ -15,12 +16,22 @@
 
     <style>
         :root {
-            /* Blue Block Official Palette */
             --brand-blue: #2196f3;
             --deep-navy: #01123c;
             --accent-cyan: #00d4ff;
             --text-main: #ffffff;
             --text-dim: rgba(255, 255, 255, 0.6);
+        }
+
+        /* FIXED HEADER SHIELD: This stops content from showing behind the battery/wifi icons */
+        .ios-status-shield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: env(safe-area-inset-top);
+            background: var(--deep-navy);
+            z-index: 2000;
         }
 
         body,
@@ -38,7 +49,6 @@
             overflow: hidden;
         }
 
-        /* High-End Background Effects */
         .bg-mesh {
             position: fixed;
             top: 0;
@@ -55,6 +65,8 @@
             width: 85%;
             max-width: 400px;
             text-align: center;
+            padding-top: env(safe-area-inset-top);
+            /* Respects the notch area */
             animation: fadeIn 0.8s ease-out;
         }
 
@@ -110,18 +122,12 @@
             font-size: 1.1rem;
             cursor: pointer;
             box-shadow: 0 15px 35px rgba(33, 150, 243, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .action-btn:active {
-            transform: scale(0.97);
-        }
-
-        /* iOS Bottom Guide */
         #ios-guide {
             display: none;
             position: fixed;
-            bottom: 30px;
+            bottom: calc(30px + env(safe-area-inset-bottom));
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
@@ -130,7 +136,7 @@
             color: #01123c;
             padding: 24px;
             border-radius: 28px;
-            z-index: 100;
+            z-index: 3000;
             text-align: center;
             box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
             animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -145,12 +151,6 @@
             border-left: 12px solid transparent;
             border-right: 12px solid transparent;
             border-top: 12px solid #fff;
-        }
-
-        .share-icon {
-            height: 24px;
-            vertical-align: middle;
-            margin: 0 5px;
         }
 
         @keyframes fadeIn {
@@ -178,7 +178,7 @@
 </head>
 
 <body>
-
+    <div class="ios-status-shield"></div>
     <div class="bg-mesh"></div>
 
     <div class="container" id="app-view">
@@ -187,16 +187,14 @@
         </div>
         <h1>Cryp Chain</h1>
         <p>Deploy the secure trading terminal directly to your home screen for instant market access.</p>
-
         <button id="main-btn" class="action-btn">Install Terminal</button>
     </div>
 
     <div id="ios-guide">
-        <div style="font-weight: 800; margin-bottom: 10px; font-size: 1.1rem; color: #01123c;">FINAL STEP</div>
+        <div style="font-weight: 800; margin-bottom: 10px; font-size: 1.1rem;">FINAL STEP</div>
         <div style="font-size: 1rem; line-height: 1.6; color: #333;">
             Tap the
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                style="vertical-align: middle; margin: 0 5px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin: 0 5px;">
                 <path d="M12 15V3M12 3L8 7M12 3L16 7" stroke="#2196f3" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
                 <path d="M9 11H5V21H19V11H15" stroke="#2196f3" stroke-width="2" stroke-linecap="round"
@@ -210,51 +208,47 @@
     <script>
         const btn = document.getElementById('main-btn');
         const iosGuide = document.getElementById('ios-guide');
-
         let deferredPrompt;
 
-        // --- ENHANCED DETECTION LOGIC ---
-        function getDeviceType() {
-            const ua = navigator.userAgent;
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) return "tablet";
-            if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpwO|os)S|Fennec|Windows Phone|PSP|MiuiBrowser/i.test(ua)) return "mobile";
-            return "desktop";
-        }
-
+        // --- ENHANCED DEVICE CHECKS ---
         const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent);
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-        const deviceType = getDeviceType();
+
+        // Simple Desktop Check
+        const isDesktop = !(/Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 
         function navigate() {
-            const ref = new URLSearchParams(window.location.search).get("i");
-            window.location.href = ref ? `https://crypchain.onrender.com` : "https://crypchain.onrender.com";
+            window.location.replace("https://crypchain.onrender.com");
         }
 
-        // REDIRECT LOGIC: Redirect if Desktop OR if already installed
-        if (deviceType === "desktop" || isStandalone) {
+        // REDIRECT LOGIC: Redirect if already on desktop or already installed
+        if (isDesktop || isStandalone) {
             navigate();
         }
 
-        // ANDROID / CHROME INSTALL PROMPT
+        // ANDROID / CHROME INSTALL CAPTURE
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
+            btn.innerText = "Install Now";
         });
 
+        // ACTION BUTTON LOGIC
         btn.addEventListener('click', async () => {
             if (isIos) {
-                // Show the "Blue Block" themed manual guide for iOS Safari
+                // Path for iPhone
                 iosGuide.style.display = 'block';
-                btn.innerText = "Complete Steps Below";
-                btn.style.opacity = '0.4';
+                btn.innerText = "Complete Below";
+                btn.style.opacity = '0.5';
                 btn.style.pointerEvents = 'none';
             } else if (deferredPrompt) {
+                // Path for Android/Chrome
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 if (outcome === 'accepted') navigate();
                 deferredPrompt = null;
             } else {
-                // General fallback
+                // Fallback for browsers that don't support PWA prompts
                 navigate();
             }
         });
