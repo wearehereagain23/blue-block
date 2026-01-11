@@ -39,6 +39,32 @@
 
 
     <style>
+        /* --- ONLY INJECT THESE RULES TO FIX IOS OVERLAP --- */
+
+        /* This pushes the navy background behind the battery/clock */
+        .page-topbar {
+            padding-top: env(safe-area-inset-top, 0px) !important;
+            background: #01123c !important;
+            height: auto !important;
+        }
+
+        /* This pushes the actual content area down so it doesn't hide */
+        #main {
+            padding-top: calc(64px + env(safe-area-inset-top, 0px)) !important;
+        }
+
+        /* This is the "Shield" to ensure the navy color is solid at the top */
+        .ios-status-shield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: env(safe-area-inset-top, 0px);
+            background: #01123c;
+            z-index: 2000;
+        }
+
+
         th {
             font-weight: 600 !important;
             color: #01123c !important;
@@ -629,7 +655,7 @@
     class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 2-columns   "
     data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
 
-
+    <div class="ios-status-shield"></div>
 
     <!-- BEGIN: Header-->
 
