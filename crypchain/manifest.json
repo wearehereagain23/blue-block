@@ -1,0 +1,21 @@
+{
+    "name": "Cryp Chain",
+    "short_name": "Cryp Chain",
+    "start_url": "/crypchain/index.html",
+    "scope": "/crypchain/",
+    "display": "standalone",
+    "background_color": "#01123c",
+    "theme_color": "#01123c",
+    "icons": [
+        {
+            "src": "../images/crypchain-icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "../images/crypchain-icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

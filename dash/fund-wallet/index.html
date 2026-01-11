@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+<html class="loading" lang="en" data-textdirection="ltr">
+
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <title>User Account Dashboard |Blue Block</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../fund-wallet/index/secured/images/favicon.png">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="../fund-wallet/index/secured/app-assets/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../fund-wallet/index/secured/app-assets/vendors/flag-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" href="../fund-wallet/index/secured/app-assets/vendors/noUiSlider/nouislider.min.css"
+        type="text/css">
+    <!-- END: VENDOR CSS-->
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" type="text/css"
+        href="../fund-wallet/index/secured/app-assets/css/themes/vertical-modern-menu-template/materialize.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../fund-wallet/index/secured/app-assets/css/themes/vertical-modern-menu-template/style.min.css">
+    <!-- END: Page Level CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../fund-wallet/index/secured/app-assets/css/custom/custom.css">
+    <!-- END: Custom CSS-->
+
+    <link rel="stylesheet" type="text/css" href="../fund-wallet/index/secured/app-assets/css/pages/lock.min.css">
+    <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
+    <style>
+        .btn {
+            background: #01123c !important;
+        }
+
+        section.box {
+            background-color: #ffffff;
+            margin: 15px 0;
+            display: inline-block;
+            width: 100%;
+            overflow: hidden;
+            -webkit-box-shadow: 0 2px 28px rgba(0, 0, 0, .1);
+            box-shadow: 0 2px 28px rgba(0, 0, 0, .1);
+        }
+
+        .referal-head {
+            overflow: hidden;
+            position: relative;
+            padding: 30px;
+        }
+
+        .referal-head h2 {
+            font-size: 30px;
+            color: #fff !important;
+        }
+
+        .referal-head p {
+            font-size: 16px;
+            color: #fff !important;
+        }
+
+        .referal-head h3,
+        .referal-head p,
+        .referal-head h2,
+        .referal-head span,
+        .referal-head h4 {
+            color: #fff !important;
+        }
+
+        .credit-amount.orange-bg.pull-right h3 {
+            font-size: 30px !important;
+            font-weight: bold !important;
+        }
+
+        .credit-amount.orange-bg.pull-right h4 {
+            font-size: 24px !important;
+            font-weight: bold !important;
+        }
+
+        .gradient-blue {
+            background: #01123c !important;
+        }
+
+        section .content-body {
+            padding: 5px 20px 30px 20px;
+            border: 1px solid #e8e8e8;
+            border-top: 0px;
+            -webkit-transition: 800ms;
+            -moz-transition: 800ms;
+            -o-transition: 800ms;
+            transition: 800ms;
+        }
+
+        .credit-amount {
+            position: absolute;
+            right: 30px;
+            top: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card .card-header-warning .card-icon,
+        .orange-bg {
+            background: linear-gradient(60deg, #ffa726, #fb8c00);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .tty {
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .mt-30 {
+            margin-top: 30px !important;
+        }
+
+        .tre thead tr {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+            color: #fff !important;
+            font-size: 18px !important;
+        }
+
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+
+
+        .tre thead tr th {
+            font-weight: bold !;
+            color: #fff !important;
+            font-size: 18px !important;
+            text-align: center;
+        }
+
+        .tre td {
+            text-align: center;
+        }
+
+        @media(max-width: 900px) {
+            .tre thead tr th {
+                font-size: 14px !important;
+            }
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+
+        @media(max-width: 455px) {
+            .ttrwe {
+                float: none !important;
+                padding: 5px !important;
+            }
+
+            .rtere>.col,
+            .hhjyuuy {
+                padding: 0px !important;
+            }
+
+
+        }
+
+
+
+        @media(max-width: 615px) {
+            .credit-amount.orange-bg.pull-right {
+                display: none !important;
+            }
+
+
+        }
+
+        .al-stef {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+        }
+
+        @media(min-width: 618px) {
+            .gtyuiks {
+                width: 85% !important;
+            }
+        }
+
+
+        @media (max-width: 615px) {
+            .ggggggyyggyyytctuct {
+                display: none !important;
+            }
+        }
+    </style>
+
+    <style>
+        /* PC SIDEBAR - PROFESSIONAL UI ENHANCEMENT */
+        @media only screen and (min-width: 993px) {
+            aside.sidenav-main {
+                display: block !important;
+                height: 100vh !important;
+                width: 260px !important;
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                background: #01123c !important;
+                /* Deep Navy Theme */
+                z-index: 1000 !important;
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            #main {
+                padding-left: 260px !important;
+            }
+
+            .sidenav li a {
+                height: 58px !important;
+                line-height: 58px !important;
+                padding: 0 25px !important;
+                display: flex !important;
+                align-items: center;
+                color: rgba(255, 255, 255, 0.7) !important;
+                font-size: 14.5px !important;
+                white-space: nowrap !important;
+                /* Fix for text splitting on PC */
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            }
+
+            .sidenav li a:hover {
+                background: rgba(33, 150, 243, 0.15) !important;
+                color: #ffffff !important;
+                padding-left: 35px !important;
+                border-left: 5px solid #2196f3 !important;
+            }
+
+            .sidenav li a i.material-icons {
+                color: #2196f3 !important;
+                /* Vibrant Blue Icons */
+                margin-right: 15px !important;
+            }
+        }
+
+        /* THEME COLOR UPDATES */
+        .btn,
+        .btn-large,
+        .btn-small {
+            background-color: #2196f3 !important;
+            font-weight: bold !important;
+        }
+
+        .gradient-blue,
+        .gradient-45deg-indigo-purple {
+            background: #01123c !important;
+        }
+
+        .referal-head {
+            background: #01123c !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* GHOST HIDE FOR CHAT WIDGET */
+        jdiv[class^="button_"],
+        jdiv[class^="label_"],
+        .jivo-btn {
+            transform: scale(0) !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+    </style>
+
+
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+
+    <!-- <link rel="stylesheet" href="./app-assets/css/cc-pay.css"> -->
+
+    <!-- POPUP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../config.js"></script>
+
+    <script type="module">
+        import { supabase, AuthService, handleGlobalLogout } from '../../supabase.js';
+
+        // Global State
+        let walletAddresses = {};
+        const userId = AuthService.getSession();
+
+        /**
+         * VISIBILITY HANDLER
+         * Listens for admin to disable the website in real-time
+         */
+        function setupVisibilityRealtime() {
+            supabase
+                .channel('public_status')
+                .on(
+                    'postgres_changes',
+                    { event: 'UPDATE', schema: 'public', table: 'admin', filter: 'id=eq.1' },
+                    (payload) => {
+                        if (payload.new.website_visibility === false) {
+                            AuthService.removeSession();
+                            window.location.href = '../../505.html';
+                        }
+                    }
+                )
+                .subscribe();
+        }
+
+        /**
+         * INITIAL CHECK & STARTUP
+         */
+        async function startDashboardSecurely() {
+            try {
+                // 1. Check Visibility on Load
+                const { data: admin } = await supabase
+                    .from('admin')
+                    .select('website_visibility')
+                    .eq('id', 1)
+                    .single();
+
+                if (admin && admin.website_visibility === false) {
+                    AuthService.removeSession();
+                    window.location.href = '../../505.html';
+                    return;
+                }
+
+                // 2. Start Realtime Visibility Watcher
+                setupVisibilityRealtime();
+
+                // 3. Initialize Data if logged in
+                if (userId) {
+                    await initPage();
+                } else {
+                    window.location.href = '../../login/index.html';
+                }
+            } catch (err) {
+                console.error("Startup Error:", err.message);
+            }
+        }
+
+        /**
+         * MAIN DATA LOADER
+         * Fetches User Profile and Admin Wallet Addresses
+         */
+        async function initPage() {
+            try {
+                // 1. Fetch Admin Wallet Addresses
+                const { data: addressData } = await supabase
+                    .from('address')
+                    .select('*')
+                    .limit(1)
+                    .single();
+
+                if (addressData) {
+                    walletAddresses = addressData;
+                    console.log("Wallets Loaded Successfully");
+                }
+
+                // 2. Fetch User Profile
+                const user = await AuthService.fetchProfile(userId);
+                if (user) {
+                    const countryEl = document.getElementById("country").innerHTML = user.country;
+                    // Update Balance and Name
+                    document.getElementById("weuss").innerHTML = `${user.first_name} ${user.last_name}`;
+
+
+
+
+                    // Update Flag
+                    const flagEl = document.getElementById("flag");
+                    if (flagEl && user.countryFlag) {
+                        flagEl.src = user.countryFlag.toLowerCase().trim();
+                        flagEl.style.display = "inline-block";
+                    }
+
+                    // Update All Profile Image Slots
+                    const profileImg = user.profile_picture || "../profile/index/secured/images/userlogo.png";
+                    ["pmler", "pmler2", "pmler3"].forEach(id => {
+                        const img = document.getElementById(id);
+                        if (img) img.src = profileImg;
+                    });
+                }
+            } catch (err) {
+                console.error("Init Error:", err.message);
+            }
+        }
+
+        /**
+         * DYNAMIC ASSET SELECTION
+         */
+        document.getElementById('crypto_type').addEventListener('change', function () {
+            const selected = this.value;
+            const addressInput = document.getElementById('address');
+            const copyBtn = document.getElementById('copyBtn');
+            const fileInput = document.getElementById('imageUpload');
+            const ccpDiv = document.getElementById('ccp');
+
+            const hideUI = () => {
+                if (addressInput) addressInput.value = "";
+                if (copyBtn) copyBtn.style.display = "none";
+                if (ccpDiv) ccpDiv.classList.add('hide');
+                if (fileInput) fileInput.disabled = true;
+            };
+
+            if (!selected) return hideUI();
+
+            // Match the selection to the DB column
+            const rawAddress = walletAddresses[selected];
+
+            if (rawAddress && rawAddress.trim() !== "") {
+                addressInput.value = rawAddress;
+                if (copyBtn) copyBtn.style.display = "inline-block";
+                if (ccpDiv) ccpDiv.classList.remove('hide');
+                if (fileInput) fileInput.disabled = false;
+            } else {
+                hideUI();
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Asset Not Available',
+                    text: `Payment method for ${selected} is not set. Please contact support.`,
+                    background: '#01123c',
+                    color: '#fff'
+                });
+                this.value = "";
+            }
+        });
+
+        /**
+         * FORM SUBMISSION & DEPOSIT HISTORY
+         */
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const amount = document.getElementById('amoun').value;
+            const crypto = document.getElementById('crypto_type').value;
+            const address = document.getElementById('address').value;
+            const file = document.getElementById('imageUpload').files[0];
+
+            if (!crypto || !address || !amount || !file) {
+                Swal.fire('Error', 'Please complete all fields and upload proof.', 'error');
+                return;
+            }
+
+            document.getElementById('spinnerModal').style.display = 'flex';
+
+            try {
+                // 1. Upload Proof to Storage
+                const fileName = `${userId}/${Date.now()}_proof`;
+                const { error: upErr } = await supabase.storage.from('deposit').upload(fileName, file);
+                if (upErr) throw upErr;
+
+                const { data: url } = supabase.storage.from('deposit').getPublicUrl(fileName);
+
+                // 2. Update User Profile Pending Total
+                const { data: profile } = await supabase.from('user_profiles').select('pendingdeposit').eq('uuid', userId).single();
+                const newPendingTotal = (Number(profile.pendingdeposit) || 0) + Number(amount);
+
+                await supabase.from('user_profiles').update({ pendingdeposit: newPendingTotal }).eq('uuid', userId);
+
+                // 3. Insert Review Entry
+                const { error: dbErr } = await supabase.from('pendingDeposit').insert([{
+                    uuid: userId,
+                    amount: amount,
+                    crypto: crypto,
+                    address: address,
+                    imageProf: url.publicUrl,
+                    status: 'pending',
+                    date: new Date().toLocaleString()
+                }]);
+
+                if (dbErr) throw dbErr;
+
+                document.getElementById('spinnerModal').style.display = 'none';
+                Swal.fire('Submitted', 'Deposit is pending admin approval.', 'success').then(() => location.reload());
+
+            } catch (err) {
+                document.getElementById('spinnerModal').style.display = 'none';
+                Swal.fire('System Error', err.message, 'error');
+            }
+        });
+
+        /**
+         * LOGOUT LOGIC (Global & Local)
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutButtons = document.querySelectorAll('#out, #m-logout');
+            logoutButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Confirm Logout',
+                        text: "Your session will be terminated.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Logout',
+                        background: '#01123c',
+                        color: '#fff'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            handleGlobalLogout(() => {
+                                window.location.href = "../../login/index.html";
+                            });
+                        }
+                    });
+                });
+            });
+        });
+
+        // START
+        startDashboardSecurely();
+
+        // UI Helper Functions
+        window.showHistoryOptions = function () {
+            Swal.fire({
+                title: 'History Options',
+                html: `
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <a href="../investments/index.html" class="btn indigo">Pending Deposits</a>
+                    <a href="../deposit_list/index.html" class="btn indigo">Approved Deposits</a>
+                    <a href="../market_history/index.html" class="btn indigo">Withdrawal History</a>
+                </div>
+            `,
+                showConfirmButton: false,
+                background: '#01123c'
+            });
+        };
+    </script>
+
+
+</head>
+<!-- END: Head-->
+
+<body
+    class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 2-columns   "
+    data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
+
+
+    <!-- BEGIN: Header-->
+
+    <style>
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+    </style>
+
+
+    <style>
+        /* PC View Enhancements: Stretching the sidebar height */
+        .sidenav-main {
+            height: 100vh !important;
+            padding-bottom: 50px;
+        }
+
+        /* Header & Mobile Logo Styling */
+        .mobile-header-logo {
+            height: 40px;
+            margin-top: 10px;
+            object-fit: contain;
+        }
+
+        /* Padding for header profile image to prevent touching corners */
+        .navbar-list .profile-button {
+            padding: 0 15px !important;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Mobile Bottom Nav */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 65px;
+            background: #01123c;
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            border-top: 1px solid #1e88e5;
+        }
+
+        .mobile-nav-item {
+            color: #fff;
+            text-align: center;
+            font-size: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+
+        .mobile-nav-item.active {
+            color: #fb8c00;
+            /* Highlight color for active page */
+        }
+
+        .mobile-nav-item i {
+            font-size: 24px;
+            margin-bottom: 2px;
+        }
+
+
+
+        @media only screen and (max-width: 992px) {
+
+            .sidenav-main,
+            .sidenav-trigger {
+                display: none !important;
+            }
+
+            .mobile-bottom-nav {
+                display: flex;
+            }
+
+            #main {
+                padding-bottom: 70px;
+            }
+        }
+    </style>
+
+    <!-- BEGIN: Header-->
+
+    <style>
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+
+        /* Ensure the Nav Bar is a flexible container */
+        .nav-wrapper {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            height: 64px;
+            padding: 0 15px;
+        }
+
+        /* Group the right-side icons so they align together */
+        .header-actions-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            /* Space between Chat and Profile */
+        }
+
+        /* Fix icon vertical alignment */
+        .header-actions-right i {
+            line-height: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Responsive logo sizing */
+        .mobile-header-logo {
+            height: 32px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+        }
+
+        /* Prevent Footer/Sidebar jump when SweetAlert is active */
+        body.swal2-shown {
+            overflow-y: auto !important;
+            padding-right: 0 !important;
+        }
+
+        body.swal2-height-auto {
+            height: 100% !important;
+        }
+
+        /* Ensure the footer stays pinned to the bottom during transitions */
+        footer.page-footer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hide Jivosite Default Bubble */
+        #jivo-iframe-container,
+        .jivo-iframe-container,
+        jdiv[class^="button_"],
+        jdiv[class^="label_"] {
+            display: none !important;
+            visibility: hidden !important;
+        }
+    </style>
+
+    <!-- pc view nav Css -->
+
+    <style>
+        /* PC SIDEBAR - HIGH-END PROFESSIONAL UI (FIXED) */
+        @media only screen and (min-width: 993px) {
+            aside.sidenav-main {
+                display: block !important;
+                height: 100vh !important;
+                width: 260px !important;
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                background: #01123c !important;
+                /* Deep Navy BG */
+                z-index: 1000 !important;
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5) !important;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            #main {
+                padding-left: 260px !important;
+            }
+
+            #slide-out {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: transparent !important;
+            }
+
+            /* ROUTE BUTTONS - FIXED FOR LONG TITLES */
+            .sidenav li a {
+                height: 58px !important;
+                line-height: 58px !important;
+                padding: 0 25px !important;
+                display: flex !important;
+                align-items: center;
+                color: rgba(255, 255, 255, 0.7) !important;
+                font-size: 14.5px !important;
+                font-weight: 500;
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+                border-left: 0px solid #2196f3;
+                /* Prevents text from splitting into two lines */
+                white-space: nowrap !important;
+            }
+
+            /* STRONG HOVER EFFECT */
+            .sidenav li a:hover {
+                background: rgba(33, 150, 243, 0.15) !important;
+                /* Light Blue Glow */
+                color: #ffffff !important;
+                padding-left: 35px !important;
+                /* Noticeable Slide */
+                border-left: 5px solid #2196f3 !important;
+                /* Instant blue bar on hover */
+            }
+
+            /* ICON STYLING - VIBRANT BLUE */
+            .sidenav li a i.material-icons {
+                color: #2196f3 !important;
+                /* Bright Material Blue */
+                margin-right: 15px !important;
+                font-size: 24px !important;
+                transition: transform 0.3s ease;
+            }
+
+            .sidenav li a:hover i {
+                transform: scale(1.2);
+                /* Icon pops out on hover */
+                color: #fff !important;
+                /* Icon turns white on hover for contrast */
+            }
+
+            /* ACTIVE STATE */
+            .sidenav li.active {
+                background: rgba(33, 150, 243, 0.2) !important;
+                border-left: 5px solid #2196f3;
+            }
+
+            .sidenav li.active a {
+                color: #fff !important;
+                font-weight: 700;
+            }
+        }
+
+        /* PROFILE & FLAG AREA */
+        .profile-box-custom {
+            padding: 25px 15px !important;
+            background: #01123c !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #flag {
+            display: inline-block !important;
+            /* FORCED VISIBILITY */
+            width: 22px !important;
+            height: 15px !important;
+            margin-left: 12px !important;
+            vertical-align: middle;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        #jivo-notification-wrapper,
+        #jivositelabel,
+        .jivo-btn,
+        .jivo-label,
+        jdiv[class^="button_"],
+        jdiv[class^="label_"],
+        jdiv[class*="omnichannel"],
+        div[class^="jivo-host"] [class*="launcher"],
+        /* New common Jivo selectors */
+        div[id^="jivo-iframe-container"]:not(.jivo-active) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: scale(0) !important;
+            position: fixed !important;
+            bottom: -500px !important;
+            /* Move it far off screen */
+        }
+
+        #jivo-iframe-container.jivo-active {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 2147483647 !important;
+            bottom: 0 !important;
+            transform: scale(1) !important;
+            pointer-events: auto !important;
+        }
+    </style>
+
+    <header class="page-topbar" id="header">
+        <div class="navbar navbar-fixed">
+            <nav style="background: #01123c !important;" class="navbar-main navbar-color navbar-dark no-shadow">
+                <div class="nav-wrapper">
+
+                    <div class="header-logo-container">
+                        <a href="../index.html" style="display: flex; align-items: center;">
+                            <img src="../con.png" alt="Logo" class="mobile-header-logo">
+                        </a>
+                    </div>
+                    <div class="header-actions-right">
+                        <a href="javascript:void(0);" id="chat-trigger" onclick="openLiveChat()"
+                            class="waves-effect waves-block waves-light"
+                            style="display: flex; align-items: center; padding: 0 10px;">
+                            <i class="material-icons" style="font-size: 26px;">chat_bubble_outline</i>
+                        </a>
+
+                        <a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);"
+                            style="display: flex; align-items: center; padding-left: 5px;">
+                            <img style="height: 38px; width: 38px; object-fit: cover; border-radius: 50%; border: 1.5px solid #1e88e5;"
+                                id="pmler" src="../profile/index/secured/images/userlogo.png" alt="avatar">
+                        </a>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light">
+        <div class="brand-sidebar"
+            style="background: white !important; height: 64px; display: flex; align-items: center; justify-content: center;">
+            <a class="brand-logo" href="../index.html">
+                <img style="width: 150px; object-fit: contain;" src="../logo.png" alt="Blue Block Logo" />
+            </a>
+        </div>
+
+        <ul class="sidenav leftside-navigation collapsible sidenav-fixed" id="slide-out">
+            <li class="profile-box-custom">
+                <div style="display: flex; align-items: center;">
+                    <img src="../profile/index/secured/images/userlogo.png" id="pmler2"
+                        style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #2196f3; object-fit: cover;">
+                    <div style="margin-left: 15px; color: #fff;">
+                        <span id="weuss"
+                            style="font-weight: 700; display: block; font-size: 14px; margin-bottom: 2px;">loading...</span>
+                        <div style="display: flex; align-items: center;">
+                            <span id="country" style="font-size: 12px; opacity: 0.8;">loading...</span>
+                            <img id="flag" src="../profile/index/secured/images/userlogo.png" alt="flag">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li><a class="waves-effect" href="../index.html"><i
+                        class="material-icons">dashboard</i><span>Dashboard</span></a></li>
+            <li class="active"><a class="waves-effect" href="#"><i
+                        class="material-icons">account_balance_wallet</i><span>Fund Account</span></a></li>
+            <li><a class="waves-effect" href="../investments/index.html"><i
+                        class="material-icons">format_list_bulleted</i><span>Pending Deposit</span></a></li>
+            <li><a class="waves-effect" href="../trade_history/index.html"><i class="material-icons">dns</i><span>Trade
+                        History</span></a></li>
+            <li><a class="waves-effect" href="../withdraw-funds/index.html"><i
+                        class="material-icons">attach_money</i><span>Withdraw Funds</span></a></li>
+            <li><a class="waves-effect" href="../market_history/index.html"><i
+                        class="material-icons">shopping_bag</i><span>Pending Withdraw</span></a></li>
+            <li><a class="waves-effect" href="../deposit_list/index.html"><i
+                        class="material-icons">confirmation_number</i><span>Approved Deposit</span></a></li>
+            <li><a class="waves-effect" href="../withdrawal-history/index.html"><i
+                        class="material-icons">folder</i><span>Withdrawal History</span></a></li>
+
+            <li><a class="waves-effect" href="../profile/index.html"><i
+                        class="material-icons">account_circle</i><span>Account Settings</span></a></li>
+
+            <li>
+                <a class="waves-effect" id="out" href="javascript:void(0);">
+                    <i class="material-icons">exit_to_app</i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- END: SideNav--> <!-- END: SideNav-->
+
+
+
+    <!-- END: SideNav--> <!-- END: SideNav-->
+
+    <!-- BEGIN: Page Main-->
+    <div id="main">
+        <div class="row">
+            <div style="background: url(../site-images/Global.jpg) !important; background-position: center;
+                  background-size: cover !important; background-repeat: no-repeat; height: 250px !important;"
+                class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+
+
+
+
+
+
+
+            <!-- referral -->
+            <div class="clearfix"></div>
+
+
+            <div class="col l12 ttrwe">
+                <section class="box ">
+                    <div class="referal-head gradient-blue">
+                        <h2 class="w-text mt-0 boldy">MAKE DEPOSIT WITH CRYPTOCURRENCY</h2>
+                        <!-- <p class="w-text mb-0">Deposit funds into your Blue Block account through bitcoin. </p> -->
+                        <p class="gtyuiks" style="color: #fff !important; font-size: 16px">You can fund your Blue Block
+                            Investments wallet using any of our payment methods below <br> Contact us
+                            if you experience any difficulties funding your account using the provided payment options.
+                        </p>
+                        <div class="credit-amount pull-right ggggggyyggyyytctuct">
+                            <img style="width: 150px;" src="../site-images/Bitcoin_accepted.html" alt="" srcset="">
+                        </div>
+                    </div>
+                    <div class="content-body">
+
+                        <div class="row">
+
+                            <div class="col s12 hhjyuuy">
+
+                                <!-- SPINNER DIV -->
+                                <div id="spinnerModal" class="spinner-modal" style="display: none;">
+                                    <div class="spinner-content">
+                                        <div class="spinner"></div>
+                                        <p>Loading, please wait...</p>
+                                    </div>
+                                </div>
+                                <!-- SPINNER DIV -->
+
+                                <div class="row">
+                                    <div class="" style="text-align: center;">
+                                        <div class="mt-30">
+                                            <h3 class="boldy tty" style="margin: 0;  font-size: 25px !important;">
+                                                Deposit Funds to Your Blue Block Wallet</h3>
+
+                                            <p>Simply click the
+                                                "Copy wallet" button to copy this wallet address and procees
+                                                to fund your account.
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <div id="ccp" class="hide">
+                                        <div
+                                            style="display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column;">
+                                            <input type="text" id="address" class="form-control" readonly
+                                                placeholder="Select asset to see address">
+                                            <br>
+                                            <button type="button" id="copyBtn" onclick="myFunction()"
+                                                class="btn btn-primary" style="display:none;">
+                                                Copy Address
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                    <style>
+                                        .affiliate-link_ img {
+                                            max-width: 100%;
+                                            height: 100px;
+                                            width: 100%;
+                                            object-fit: cover;
+                                            display: block !important;
+                                        }
+
+                                        .affiliate-link_ p {
+                                            text-transform: uppercase;
+                                            font-weight: bold;
+                                            text-align: center;
+                                            font-size: 18px;
+                                        }
+
+                                        /* Center the text inside the address display input */
+                                        #address {
+                                            text-align: center;
+                                            font-weight: bold;
+                                            border: none;
+                                            background: transparent;
+                                            color: #01123c;
+                                        }
+                                    </style>
+
+
+
+
+                                    <div class="row">
+                                        <div class="col m8 offset-m2 s12" style="margin-top: 70px;">
+
+                                            <div class="mt-30" style="text-align: center;" id="uploaded">
+                                                <h3 class="boldy tty"
+                                                    style="margin: 0;  font-size: 25px !important; text-transform: capitalize">
+                                                    Upload proof of deposit</h3>
+                                                <p class="w-text mb-0">Your Blue Block Investment
+                                                    wallet
+                                                    balance will be funded once the uploaded proof of deposit is
+                                                    authenticated. </p>
+
+
+                                            </div>
+
+                                            <div class="affiliate-link_">
+                                                <form id="uploadForm">
+
+                                                    <div class="col m8 offset-m2 s12">
+                                                        <select id="crypto_type" class="form-control">
+                                                            <option value="">Select Asset</option>
+                                                            <option value="Bitcoin">Bitcoin (BTC)</option>
+                                                            <option value="Ethereum">Ethereum (ETH)</option>
+                                                            <option value="Solana">Solana (SOL)</option>
+                                                            <option value="Binance">Binance (BNB)</option>
+                                                            <option value="Ripple">Ripple (XRP)</option>
+                                                            <option value="Cardano">Cardano (ADA)</option>
+                                                            <option value="Polygon">Polygon (MATIC)</option>
+                                                            <option value="Polkadot">Polkadot (DOT)</option>
+                                                            <option value="Litecoin">Litecoin (LTC)</option>
+                                                            <option value="Avalanche">Avalanche (AVAX)</option>
+                                                            <option value="Chainlink">Chainlink (LINK)</option>
+                                                            <option value="Shiba">Shiba Inu (SHIB)</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col m8 offset-m2 s12 file-field input-field">
+                                                        <div class="btn float-right">
+                                                            <span>Select File</span>
+                                                            <input required type="file" name="imageUpload"
+                                                                id="imageUpload" accept=".jpg, .jpeg, .png">
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input disabled
+                                                                placeholder="Click to select a file to upload"
+                                                                class="file-path" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <input placeholder="Enter the amount you sent" id="amoun"
+                                                        name="amoun" type="number" style="text-align: center;" required>
+                                                    <div class="input-field col s12">
+
+                                                        <button type="submit"
+                                                            class="btn btn-block cyan waves-effect waves-light"
+                                                            id="form-submit">
+                                                            <i class="material-icons left">send</i> Upload Now
+                                                            <span id="loaderIcon6"></span>
+                                                        </button>
+                                                        <input type="reset" name="reset" id="reset"
+                                                            style="display: none">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                </section>
+            </div>
+
+
+            <!-- referral -->
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <!-- END: Page Main-->
+
+
+    <!-- BEGIN: Footer-->
+
+    <footer style="background: #01123c !important;"
+        class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
+        <div class="footer-copyright">
+            <div class="container" style="text-align: center;"><span>&copy; 2026 <a href="#" target="_blank">Blue
+                        Block</a> All rights reserved.</span></div>
+        </div>
+    </footer>
+
+
+    <script src="//code.jivosite.com/widget/mzF45pvueS" async></script>
+    <script>
+        window.openLiveChat = function () {
+            if (typeof jivo_api !== 'undefined') { jivo_api.open(); }
+        };
+    </script>
+
+
+    <!-- END: Footer-->
+    <!-- BEGIN VENDOR JS-->
+    <script src="../fund-wallet/index/secured/app-assets/js/vendors.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="../fund-wallet/index/secured/app-assets/vendors/noUiSlider/nouislider.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN THEME  JS-->
+    <script src="../fund-wallet/index/secured/app-assets/js/plugins.min.js"></script>
+    <script src="../fund-wallet/index/secured/app-assets/js/search.min.js"></script>
+    <script src="../fund-wallet/index/secured/app-assets/js/custom/custom-script.min.js"></script>
+    <script src="../fund-wallet/index/secured/app-assets/js/scripts/customizer.min.js"></script>
+    <!-- END THEME  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="../fund-wallet/index/secured/app-assets/js/scripts/form-elements.min.js"></script>
+    <!-- END PAGE LEVEL JS-->
+    <script src="../fund-wallet/index/secured/app-assets/js/scripts/ui-alerts.min.js"></script>
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+
+
+    <!-- SPINNER CSS -->
+    <style>
+        .spinner-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.938);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .spinner-content {
+            text-align: center;
+            color: white;
+        }
+
+        .spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #ffffff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <script>
+        function myFunction() {
+            // Get the text field
+            var copyText = document.getElementById("address");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+
+            // Alert the copied text
+            Swal.fire({
+                title: 'Copied',
+                text: `${copyText.value}`,
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'OK!'
+            });
+        }
+    </script>
+
+    <div class="mobile-bottom-nav">
+        <a href="../index.html" class="mobile-nav-item ">
+            <i class="material-icons">dashboard</i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="mobile-nav-item active">
+            <i class="material-icons">account_balance_wallet</i>
+            <span>Fund</span>
+        </a>
+        <a href="javascript:void(0);" onclick="showHistoryOptions()" class="mobile-nav-item">
+            <i class="material-icons">history</i>
+            <span>History</span>
+        </a>
+        <a href="../withdraw-funds/index.html" class="mobile-nav-item">
+            <i class="material-icons">attach_money</i>
+            <span>Withdraw</span>
+        </a>
+        <a href="../profile/index.html" class="mobile-nav-item ">
+            <i class="material-icons">settings</i>
+            <span>Settings</span>
+        </a>
+    </div>
+</body>
+
+
+
+<!--   -->
+
+</html>

@@ -1,0 +1,63 @@
+/* FORCE VISIBILITY & STRETCH */
+@media only screen and (min-width: 993px) {
+
+    /* 1. Force sidebar to stay on screen */
+    aside.sidenav-main {
+        display: flex !important;
+        flex-direction: column !important;
+        transform: translateX(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 250px !important;
+        height: 100vh !important;
+        position: fixed !important;
+        background: #01123c !important;
+        z-index: 1000 !important;
+    }
+
+    /* 2. Adjust main content area */
+    #main,
+    .page-footer {
+        padding-left: 250px !important;
+        width: 100% !important;
+    }
+}
+
+/* 3. THE STRETCH ENGINE */
+#slide-out {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.sidenav-menu-content {
+    flex-grow: 1;
+    /* Pushes logout to bottom */
+    overflow-y: auto;
+}
+
+/* 4. CLEAN ALIGNMENT (No Invisible Rows) */
+.brand-sidebar {
+    height: 64px !important;
+    background: #fff !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-profile-header {
+    background: #01123c !important;
+    padding: 20px 15px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 5. LOGOUT FOOTER */
+.logout-footer {
+    margin-top: auto !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}

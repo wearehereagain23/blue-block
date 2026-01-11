@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+
+<html class="loading" lang="en" data-textdirection="ltr">
+
+
+
+<head>
+    <!-- IMPORTED TABLE -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- IMPORTED TABLE END -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Approved Deposit | Blue Block - User Dashboard</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../deposit_list/index/secured/images/favicon.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../deposit_list/index/secured/app-assets/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../deposit_list/index/secured/app-assets/vendors/flag-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../deposit_list/index/secured/app-assets/vendors/data-tables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../deposit_list/index/secured/app-assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../deposit_list/index/secured/app-assets/vendors/data-tables/css/select.dataTables.min.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="../deposit_list/index/secured/app-assets/css/themes/vertical-modern-menu-template/materialize.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../deposit_list/index/secured/app-assets/css/themes/vertical-modern-menu-template/style.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../deposit_list/index/secured/app-assets/css/pages/data-tables.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../deposit_list/index/secured/app-assets/css/custom/custom.css">
+
+
+
+
+    <style>
+        th {
+            font-weight: 600 !important;
+            color: #01123c !important;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+        }
+
+
+        .ask-box {
+            padding: 20px 0 20px 30px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background-image: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        .ask-circle {
+            float: left;
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            text-align: center;
+            margin-right: 25px;
+        }
+
+        .ask-circle img {
+            width: 100% !important;
+        }
+
+        .ask-info {
+            margin: 0 65px 0 85px;
+            color: #fff;
+        }
+
+        .ask-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .mb-0 {
+            margin-bottom: 0px !important;
+        }
+
+
+
+        .ask-arrow {
+            top: 0;
+            position: absolute;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            text-align: center;
+            float: right;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .ask-arrow span {
+            border-radius: 100%;
+            background: #fff;
+            display: inline-block;
+            padding: 4px;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            font-weight: normal;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .al-stef {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+        }
+
+
+        .referal-head {
+            overflow: hidden;
+            position: relative;
+            padding: 30px;
+        }
+
+        .referal-head h2 {
+            font-size: 30px;
+            color: #fff !important;
+        }
+
+        .referal-head p {
+            font-size: 16px;
+            color: #fff !important;
+        }
+
+        .referal-head h3,
+        .referal-head p,
+        .referal-head h2,
+        .referal-head span,
+        .referal-head h4 {
+            color: #fff !important;
+        }
+
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+
+        .tre td {
+            /* text-align: left !important; */
+        }
+
+        .credit-amount.orange-bg.pull-right h3 {
+            font-size: 30px !important;
+            font-weight: bold !important;
+        }
+
+        .credit-amount.orange-bg.pull-right h4 {
+            font-size: 24px !important;
+            font-weight: bold !important;
+        }
+
+        .gradient-blue {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+        }
+
+        section .content-body {
+            padding: 5px 20px 30px 20px;
+            border: 1px solid #e8e8e8;
+            border-top: 0px;
+            -webkit-transition: 800ms;
+            -moz-transition: 800ms;
+            -o-transition: 800ms;
+            transition: 800ms;
+        }
+
+        .credit-amount {
+            position: absolute;
+            right: 30px;
+            top: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card .card-header-warning .card-icon,
+        .orange-bg {
+            background: linear-gradient(60deg, #ffa726, #fb8c00);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .tty {
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .mt-30 {
+            margin-top: 30px !important;
+        }
+
+        .tre thead tr {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+            color: #fff !important;
+            font-size: 18px !important;
+        }
+
+
+        .tre thead tr th {
+            font-weight: bold !;
+            color: #fff !important;
+            font-size: 18px !important;
+            text-align: center;
+        }
+
+        .tre td {
+            text-align: center;
+        }
+
+        @media(max-width: 900px) {
+            .tre thead tr th {
+                font-size: 14px !important;
+            }
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+
+        @media(max-width: 455px) {
+            .ttrwe {
+                float: none !important;
+                padding: 5px !important;
+            }
+
+            .rtere>.col,
+            .hhjyuuy {
+                padding: 0px !important;
+            }
+
+
+        }
+
+
+
+        @media(max-width: 615px) {
+            .credit-amount.orange-bg.pull-right {
+                display: none !important;
+            }
+
+
+        }
+
+        .al-stef {
+            background: #01123c !important;
+        }
+
+        .gradient-45deg-indigo-purple,
+        footer {
+            background: #01123c !important;
+        }
+    </style>
+
+    <!-- POPUP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../config.js"></script>
+    <script type="module">
+        // Correct import path for subfolders (../../)
+        import { supabase, AuthService, handleGlobalLogout } from '../../supabase.js';
+
+        function showSpinnerModal() {
+            const modal = document.getElementById('spinnerModal');
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function hideSpinnerModal() {
+            const modal = document.getElementById('spinnerModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        // Start spinner immediately
+        showSpinnerModal();
+
+
+        function setupVisibilityRealtime() {
+            supabase
+                .channel('public_status')
+                .on(
+                    'postgres_changes',
+                    { event: 'UPDATE', schema: 'public', table: 'admin', filter: 'id=eq.1' },
+                    (payload) => {
+                        // If visibility is turned off while user is on page
+                        if (payload.new.website_visibility === false) {
+                            AuthService.removeSession();
+                            window.location.href = '../../505.html';
+                        }
+                    }
+                )
+                .subscribe();
+        }
+
+        /**
+         * INITIAL CHECK & STARTUP
+         */
+        async function startDashboardSecurely() {
+            // 1. Initial Fetch (Immediate check on load)
+            const { data: admin } = await supabase
+                .from('admin')
+                .select('website_visibility')
+                .eq('id', 1)
+                .single();
+
+            if (admin && admin.website_visibility === false) {
+                AuthService.removeSession();
+                window.location.href = '../../505.html';
+                return;
+            }
+
+            // 2. Start Realtime Watcher (Wait for changes)
+            setupVisibilityRealtime();
+
+            // 3. Continue with your existing dashboard functions
+            const userId = AuthService.getSession();
+            if (userId) {
+                initDashboard(); // Your existing function
+                initPage();      // Your existing function
+            } else {
+                window.location.href = '../../login/index.html';
+            }
+        }
+
+        // Execute the secure startup
+        startDashboardSecurely();
+
+        async function initializeApprovedDepositPage() {
+            // 1. Get Session from Local Storage
+            const userId = AuthService.getSession();
+
+            if (!userId) {
+                console.warn("No active session found. Redirecting...");
+                window.location.href = "../login/index.html";
+                return;
+            }
+
+            try {
+                // 2. Fetch Profile from user_profiles table
+                const user = await AuthService.fetchProfile(userId);
+
+                if (user && user.active === 'Active') {
+                    hideSpinnerModal();
+
+                    // Update Sidebar / Header UI
+                    document.getElementById("weuss").innerHTML = `${user.first_name} ${user.last_name}`;
+                    document.getElementById("country").innerHTML = user.country;
+
+                    // Flag logic using 'countryFlag'
+                    const flagEl = document.getElementById("flag");
+                    if (flagEl && user.countryFlag) {
+                        const code = user.countryFlag.toLowerCase().trim();
+                        flagEl.src = code;
+                    }
+
+                    const profileImg = user.profile_picture || "../profile/index/secured/images/userlogo.png";
+                    ["pmler", "pmler2", "pmler3"].forEach(id => {
+                        const img = document.getElementById(id);
+                        if (img) img.src = profileImg;
+                    });
+
+                    // Store currency for the table rows
+                    localStorage.setItem("currency", user.currency || "$");
+
+                    // 3. Load Approved Deposits (status 'completed' or 'approved')
+                    await loadApprovedHistory(userId);
+                } else {
+                    window.location.href = "../login/index.html";
+                }
+            } catch (err) {
+                console.error("Initialization error:", err.message);
+                hideSpinnerModal();
+            }
+        }
+
+        async function loadApprovedHistory(uuid) {
+            const tableContainer = document.getElementById("tableData");
+            const emptyState = document.getElementById("empty");
+            const tableBody = document.getElementById("cvcx2");
+            const currency = localStorage.getItem("currency") || "$";
+
+            // FETCHING FROM 'history' TABLE
+            const { data, error } = await supabase
+                .from('history')
+                .select('*')
+                .eq('uuid', uuid)
+                .eq('status', 'Complete') // Matches the 'Complete' status we set in the insert logic
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error('Error fetching data:', error.message);
+                return;
+            }
+
+            if (data && data.length > 0) {
+                emptyState.classList.add("hide");
+                tableContainer.classList.remove("hide");
+
+                tableBody.innerHTML = ""; // Clear existing rows
+                data.forEach(doc => {
+                    // Mapping Mismatch Fixes:
+                    // 1. doc.id is a BigInt (number), not a string/uuid, so no .substring()
+                    const displayId = doc.id;
+
+                    // 2. doc.cryptoCurrnecy matches your schema typo exactly
+                    const cryptoDisplay = doc.cryptoCurrnecy || 'N/A';
+
+                    const row = `
+            <tr>
+                <td class="cell" data-title="ID">#${displayId}</td>
+                <td class="cell" data-title="Date / Time">${doc.date || 'N/A'}</td>
+                <td class="cell" data-title="Amount">${currency}${doc.amount}</td>
+                <td class="cell" data-title="Wallet">${doc.address || 'N/A'}</td>
+                <td class="cell" data-title="Crypto">${cryptoDisplay}</td>
+                <td class="cell" data-title="Status">
+                    <span class="badge green white-text" style="padding: 5px 10px; border-radius: 4px;">
+                        ${doc.status}
+                    </span>
+                </td>
+            </tr>`;
+                    tableBody.insertAdjacentHTML('beforeend', row);
+                });
+            } else {
+                emptyState.classList.remove("hide");
+                tableContainer.classList.add("hide");
+            }
+        }
+        // Run initialization
+        initializeApprovedDepositPage();
+
+
+
+
+        window.showHistoryOptions = function () {
+            Swal.fire({
+                title: 'Select History',
+                html: `
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <a href="../investments/index.html" class="btn indigo">Pending Deposits</a>
+                <a href="../trade_history/index.html" class="btn indigo">Trade History</a>
+                <a href="../market_history/index.html" class="btn indigo">Pending Withdraws</a>
+                <a href="../deposit_list/index.html" class="btn indigo">Approved Deposits</a>
+                <a href="../withdrawal-history/index.html" class="btn indigo">Withdrawal History</a>
+            </div>
+        `,
+                showConfirmButton: false,
+                showCloseButton: true,
+                background: '#01123c',
+                customClass: { title: 'white-text' }
+            });
+        };
+
+
+        // 2. Fixed Logout Logic
+        // There was a bug where the logout listener wasn't attached correctly
+        const logoutBtn = document.getElementById('out');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Logout?',
+                    text: "You will be signed out of your session",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#fb8c00',
+                    confirmButtonText: 'Yes, logout'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Clear local session data here if needed
+                        window.location.href = "../../login/index.html";
+                    }
+                });
+            });
+        }
+
+        async function initPage() {
+            // 1. Get the session (already protected by supabase.js import)
+            const userId = AuthService.getSession();
+
+            try {
+                // 2. Load User Profile
+                const user = await AuthService.fetchProfile(userId);
+
+                // Update your UI (Example)
+                document.getElementById("weuss").innerHTML = `${user.first_name} ${user.last_name}`;
+                document.getElementById("xxpol").innerHTML = (user.currency || '$') + user.account_balance;
+
+            } catch (err) {
+                console.error("Auth Error:", err.message);
+            }
+        }
+
+        // 3. Setup Logout Buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutButtons = document.querySelectorAll('#out, #m-logout');
+
+            logoutButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: 'Confirm Logout',
+                        text: "This will log you out of all active tabs.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2196f3',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, logout',
+                        background: '#01123c',
+                        color: '#fff'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // This call triggers the 'storage' event in all other tabs
+                            handleGlobalLogout(() => {
+                                window.location.href = "../../login/index.html";
+                            });
+                        }
+                    });
+                });
+            });
+        });
+
+        initPage();
+
+
+
+        // Monitor and kill Jivosite default bubble if it tries to appear
+        const killJivoBubble = () => {
+            // Select all potential Jivo elements
+            const elementsToHide = document.querySelectorAll(
+                'jdiv[class^="button_"], jdiv[class^="label_"], .jivo-btn-container, #jivo-label'
+            );
+            elementsToHide.forEach(el => {
+                el.style.setProperty('display', 'none', 'important');
+                el.style.setProperty('visibility', 'hidden', 'important');
+            });
+        };
+
+        // Run more frequently at start to catch the PC injection
+        let jivoCounter = 0;
+        const jivoKiller = setInterval(() => {
+            killJivoBubble();
+            if (jivoCounter++ > 20) clearInterval(jivoKiller); // Increased to 20 to be safe
+        }, 300);
+
+
+
+        window.openLiveChat = function () {
+            if (typeof jivo_api !== 'undefined') {
+                const container = document.getElementById('jivo-iframe-container');
+
+                // Force CSS transition to visible
+                if (container) {
+                    container.classList.add('jivo-active');
+                    container.style.setProperty('display', 'block', 'important');
+                    container.style.setProperty('visibility', 'visible', 'important');
+                    container.style.setProperty('opacity', '1', 'important');
+                    container.style.setProperty('z-index', '2147483647', 'important');
+                }
+
+                // Open the native chat window
+                jivo_api.open();
+            } else {
+                // Retry if script is still downloading
+                setTimeout(window.openLiveChat, 500);
+            }
+        };
+
+    </script>
+</head>
+<!-- END: Head-->
+
+<body
+    class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 2-columns   "
+    data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
+
+
+
+    <!-- BEGIN: Header-->
+
+    <style>
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+    </style>
+
+    <style>
+        /* PC View Enhancements: Stretching the sidebar height */
+        .sidenav-main {
+            height: 100vh !important;
+            padding-bottom: 50px;
+        }
+
+        /* Header & Mobile Logo Styling */
+        .mobile-header-logo {
+            height: 40px;
+            margin-top: 10px;
+            object-fit: contain;
+        }
+
+        /* Padding for header profile image to prevent touching corners */
+        .navbar-list .profile-button {
+            padding: 0 15px !important;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Mobile Bottom Nav */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 65px;
+            background: #01123c;
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            border-top: 1px solid #1e88e5;
+        }
+
+        .mobile-nav-item {
+            color: #fff;
+            text-align: center;
+            font-size: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+
+        .mobile-nav-item.active {
+            color: #fb8c00;
+            /* Highlight color for active page */
+        }
+
+        .mobile-nav-item i {
+            font-size: 24px;
+            margin-bottom: 2px;
+        }
+
+
+
+        @media only screen and (max-width: 992px) {
+
+            .sidenav-main,
+            .sidenav-trigger {
+                display: none !important;
+            }
+
+            .mobile-bottom-nav {
+                display: flex;
+            }
+
+            #main {
+                padding-bottom: 70px;
+            }
+        }
+    </style>
+
+
+
+    <!-- BEGIN: Header-->
+
+    <style>
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+
+        /* Ensure the Nav Bar is a flexible container */
+        .nav-wrapper {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            height: 64px;
+            padding: 0 15px;
+        }
+
+        /* Group the right-side icons so they align together */
+        .header-actions-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            /* Space between Chat and Profile */
+        }
+
+        /* Fix icon vertical alignment */
+        .header-actions-right i {
+            line-height: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Responsive logo sizing */
+        .mobile-header-logo {
+            height: 32px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+        }
+
+        /* Prevent Footer/Sidebar jump when SweetAlert is active */
+        body.swal2-shown {
+            overflow-y: auto !important;
+            padding-right: 0 !important;
+        }
+
+        body.swal2-height-auto {
+            height: 100% !important;
+        }
+
+        /* Ensure the footer stays pinned to the bottom during transitions */
+        footer.page-footer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hide Jivosite Default Bubble */
+        #jivo-iframe-container,
+        .jivo-iframe-container,
+        jdiv[class^="button_"],
+        jdiv[class^="label_"] {
+            display: none !important;
+            visibility: hidden !important;
+        }
+    </style>
+
+    <!-- pc view nav Css -->
+
+    <style>
+        /* PC SIDEBAR - HIGH-END PROFESSIONAL UI (FIXED) */
+        @media only screen and (min-width: 993px) {
+            aside.sidenav-main {
+                display: block !important;
+                height: 100vh !important;
+                width: 260px !important;
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                background: #01123c !important;
+                /* Deep Navy BG */
+                z-index: 1000 !important;
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5) !important;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            #main {
+                padding-left: 260px !important;
+            }
+
+            #slide-out {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: transparent !important;
+            }
+
+            /* ROUTE BUTTONS - FIXED FOR LONG TITLES */
+            .sidenav li a {
+                height: 58px !important;
+                line-height: 58px !important;
+                padding: 0 25px !important;
+                display: flex !important;
+                align-items: center;
+                color: rgba(255, 255, 255, 0.7) !important;
+                font-size: 14.5px !important;
+                font-weight: 500;
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+                border-left: 0px solid #2196f3;
+                /* Prevents text from splitting into two lines */
+                white-space: nowrap !important;
+            }
+
+            /* STRONG HOVER EFFECT */
+            .sidenav li a:hover {
+                background: rgba(33, 150, 243, 0.15) !important;
+                /* Light Blue Glow */
+                color: #ffffff !important;
+                padding-left: 35px !important;
+                /* Noticeable Slide */
+                border-left: 5px solid #2196f3 !important;
+                /* Instant blue bar on hover */
+            }
+
+            /* ICON STYLING - VIBRANT BLUE */
+            .sidenav li a i.material-icons {
+                color: #2196f3 !important;
+                /* Bright Material Blue */
+                margin-right: 15px !important;
+                font-size: 24px !important;
+                transition: transform 0.3s ease;
+            }
+
+            .sidenav li a:hover i {
+                transform: scale(1.2);
+                /* Icon pops out on hover */
+                color: #fff !important;
+                /* Icon turns white on hover for contrast */
+            }
+
+            /* ACTIVE STATE */
+            .sidenav li.active {
+                background: rgba(33, 150, 243, 0.2) !important;
+                border-left: 5px solid #2196f3;
+            }
+
+            .sidenav li.active a {
+                color: #fff !important;
+                font-weight: 700;
+            }
+        }
+
+        /* PROFILE & FLAG AREA */
+        .profile-box-custom {
+            padding: 25px 15px !important;
+            background: #01123c !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #flag {
+            display: inline-block !important;
+            /* FORCED VISIBILITY */
+            width: 22px !important;
+            height: 15px !important;
+            margin-left: 12px !important;
+            vertical-align: middle;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        #jivo-notification-wrapper,
+        #jivositelabel,
+        .jivo-btn,
+        .jivo-label,
+        jdiv[class^="button_"],
+        jdiv[class^="label_"],
+        jdiv[class*="omnichannel"],
+        div[class^="jivo-host"] [class*="launcher"],
+        /* New common Jivo selectors */
+        div[id^="jivo-iframe-container"]:not(.jivo-active) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: scale(0) !important;
+            position: fixed !important;
+            bottom: -500px !important;
+            /* Move it far off screen */
+        }
+
+        #jivo-iframe-container.jivo-active {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 2147483647 !important;
+            bottom: 0 !important;
+            transform: scale(1) !important;
+            pointer-events: auto !important;
+        }
+    </style>
+
+    <header class="page-topbar" id="header">
+        <div class="navbar navbar-fixed">
+            <nav style="background: #01123c !important;" class="navbar-main navbar-color navbar-dark no-shadow">
+                <div class="nav-wrapper">
+
+                    <div class="header-logo-container">
+                        <a href="../index.html" style="display: flex; align-items: center;">
+                            <img src="../con.png" alt="Logo" class="mobile-header-logo">
+                        </a>
+                    </div>
+                    <div class="header-actions-right">
+                        <a href="javascript:void(0);" id="chat-trigger" onclick="openLiveChat()"
+                            class="waves-effect waves-block waves-light"
+                            style="display: flex; align-items: center; padding: 0 10px;">
+                            <i class="material-icons" style="font-size: 26px;">chat_bubble_outline</i>
+                        </a>
+
+                        <a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);"
+                            style="display: flex; align-items: center; padding-left: 5px;">
+                            <img style="height: 38px; width: 38px; object-fit: cover; border-radius: 50%; border: 1.5px solid #1e88e5;"
+                                id="pmler" src="../profile/index/secured/images/userlogo.png" alt="avatar">
+                        </a>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light">
+        <div class="brand-sidebar"
+            style="background: white !important; height: 64px; display: flex; align-items: center; justify-content: center;">
+            <a class="brand-logo" href="../index.html">
+                <img style="width: 150px; object-fit: contain;" src="../logo.png" alt="Blue Block Logo" />
+            </a>
+        </div>
+
+        <ul class="sidenav leftside-navigation collapsible sidenav-fixed" id="slide-out">
+            <li class="profile-box-custom">
+                <div style="display: flex; align-items: center;">
+                    <img src="../profile/index/secured/images/userlogo.png" id="pmler2"
+                        style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #2196f3; object-fit: cover;">
+                    <div style="margin-left: 15px; color: #fff;">
+                        <span id="weuss"
+                            style="font-weight: 700; display: block; font-size: 14px; margin-bottom: 2px;">loading...</span>
+                        <div style="display: flex; align-items: center;">
+                            <span id="country" style="font-size: 12px; opacity: 0.8;">loading...</span>
+                            <img id="flag" src="../profile/index/secured/images/userlogo.png" alt="flag">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li><a class="waves-effect" href="../index.html"><i
+                        class="material-icons">dashboard</i><span>Dashboard</span></a></li>
+            <li><a class="waves-effect" href="../fund-wallet/index.html"><i
+                        class="material-icons">account_balance_wallet</i><span>Fund Account</span></a></li>
+            <li><a class="waves-effect" href="../investments/index.html"><i
+                        class="material-icons">format_list_bulleted</i><span>Pending Deposit</span></a></li>
+            <li><a class="waves-effect" href="../trade_history/index.html"><i class="material-icons">dns</i><span>Trade
+                        History</span></a></li>
+            <li><a class="waves-effect" href="../withdraw-funds/index.html"><i
+                        class="material-icons">attach_money</i><span>Withdraw Funds</span></a></li>
+            <li><a class="waves-effect" href="../market_history/index.html"><i
+                        class="material-icons">shopping_bag</i><span>Pending Withdraw</span></a></li>
+            <li class="active"><a class="waves-effect" href="#"><i
+                        class="material-icons">confirmation_number</i><span>Approved Deposit</span></a></li>
+            <li><a class="waves-effect" href="../withdrawal-history/index.html"><i
+                        class="material-icons">folder</i><span>Withdrawal History</span></a></li>
+
+            <li><a class="waves-effect" href="../profile/index.html"><i
+                        class="material-icons">account_circle</i><span>Account Settings</span></a></li>
+
+            <li>
+                <a class="waves-effect" id="out" href="javascript:void(0);">
+                    <i class="material-icons">exit_to_app</i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- END: SideNav--> <!-- END: SideNav-->
+
+
+
+    <!-- END: SideNav-->
+    <div id="main">
+        <div class="row">
+            <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+            <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+                <!-- Search for small screen-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 m6 l6">
+                            <h5 class="breadcrumbs-title mt-0 mb-0"><span>Approved Deposit</span></h5>
+                            <ol class="breadcrumbs mb-0">
+                                <li class="breadcrumb-item" style="color: #fff;">Home
+                                </li>
+                                <li class="breadcrumb-item active" style="color: #fff;">Approved Deposit
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="container">
+                    <div class="section section-data-tables">
+
+                        <!-- DataTables example -->
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div id="button-trigger" class="card card-default scrollspy">
+                                    <div class="card-content">
+
+                                        <style>
+                                            @media only screen and (max-width: 600px) {
+
+                                                /* Remove parent padding so table can touch edges if needed */
+                                                .card {
+                                                    margin-left: 15%;
+                                                }
+                                            }
+                                        </style>
+
+                                        <!-- start here-->
+                                        <div class="" id="empty">
+                                            <div class="" style="padding: 10px 2px;">
+
+                                                <div class="row">
+                                                    <div class="col s12 m8 offset-m2">
+                                                        <div class="card gradient-shadow al-stef border-radius-3">
+                                                            <div class="card-content center">
+                                                                <img src="../deposit_list/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
+                                                                    alt="images" class="width-40" />
+                                                                <h5 class="white-text lighten-4">Empty list
+                                                                </h5>
+                                                                <p class="white-text lighten-4">You have not made any
+                                                                    deposit yet. Please make deposit and start investing
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- SPINNER DIV -->
+                                        <div id="spinnerModal" class="spinner-modal" style="display: none;">
+                                            <div class="spinner-content">
+                                                <div class="spinner"></div>
+                                                <p>Loading, please wait...</p>
+                                            </div>
+                                        </div>
+                                        <!-- SPINNER DIV -->
+
+
+
+                                        <!-- IMPORTED TABLE -->
+
+                                        <div class="limiter hide" id="tableData">
+                                            <table class="table">
+
+                                                <thead class="row header">
+                                                    <tr>
+                                                        <th class="cell">
+                                                            ID
+                                                        </th>
+                                                        <th class="cell">
+                                                            Date / Time
+                                                        </th>
+                                                        <th class="cell">
+                                                            Amount
+                                                        </th>
+                                                        <th class="cell">
+                                                            Wallet
+                                                        </th>
+                                                        <th class="cell">
+                                                            Crypto
+                                                        </th>
+                                                        <th class="cell">
+                                                            Status
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                <thead id="cvcx2">
+                                                    <tr>
+
+
+                                                    </tr>
+                                                </thead>
+
+
+
+                                            </table>
+                                        </div>
+
+
+                                        <!-- IMPORTED TABLE END -->
+
+                                        <!-- end here -->
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div><!-- START RIGHT SIDEBAR NAV -->
+
+                </div>
+                <div class="content-overlay"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Page Main-->
+
+
+    <footer style="background: #01123c !important;"
+        class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
+        <div class="footer-copyright">
+            <div class="container" style="text-align: center;"><span>&copy; 2026 <a href="#" target="_blank">Blue
+                        Block</a> All rights reserved.</span></div>
+        </div>
+    </footer>
+
+
+
+    <script src="//code.jivosite.com/widget/mzF45pvueS" async></script>
+
+    <script>
+        // CRITICAL: We DO NOT call jivo_api.hide() here.
+        // That command disables the chat entirely.
+        function jivo_onLoadCallback() {
+            // This tells Jivosite's own engine to hide the trigger button
+            if (typeof jivo_api !== 'undefined') {
+                jivo_api.hide();
+                // Note: jivo_api.hide() hides the BUTTON, but jivo_api.open() will still work.
+            }
+        }
+
+        // Enhanced killer that watches for DOM changes
+        const observer = new MutationObserver(() => {
+            const bubble = document.querySelector('jdiv[class^="button_"], jdiv[class^="label_"]');
+            if (bubble && bubble.style.display !== 'none') {
+                bubble.style.setProperty('display', 'none', 'important');
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+
+    <!-- END: Footer-->
+    <!-- BEGIN VENDOR JS-->
+    <script src="../deposit_list/index/secured/app-assets/js/vendors.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="../deposit_list/index/secured/app-assets/vendors/data-tables/js/jquery.dataTables.min.js"></script>
+    <script
+        src="../deposit_list/index/secured/app-assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../deposit_list/index/secured/app-assets/vendors/data-tables/js/dataTables.select.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN THEME  JS-->
+    <script src="../deposit_list/index/secured/app-assets/js/plugins.min.js"></script>
+    <script src="../deposit_list/index/secured/app-assets/js/search.min.js"></script>
+    <script src="../deposit_list/index/secured/app-assets/js/custom/custom-script.min.js"></script>
+    <script src="../deposit_list/index/secured/app-assets/js/scripts/customizer.min.js"></script>
+    <!-- END THEME  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="../deposit_list/index/secured/app-assets/js/scripts/data-tables.min.js"></script>
+    <!-- END PAGE LEVEL JS-->
+
+
+    <!-- SPINNER CSS -->
+    <style>
+        .spinner-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.938);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .spinner-content {
+            text-align: center;
+            color: white;
+        }
+
+        .spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #ffffff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <div class="mobile-bottom-nav">
+        <a href="../index.html" class="mobile-nav-item">
+            <i class="material-icons">dashboard</i>
+            <span>Dashboard</span>
+        </a>
+        <a href="../fund-wallet/index.html" class="mobile-nav-item">
+            <i class="material-icons">account_balance_wallet</i>
+            <span>Fund</span>
+        </a>
+        <a href="javascript:void(0);" onclick="showHistoryOptions()" class="mobile-nav-item active">
+            <i class="material-icons">history</i>
+            <span>History</span>
+        </a>
+        <a href="../withdraw-funds/index.html" class="mobile-nav-item">
+            <i class="material-icons">attach_money</i>
+            <span>Withdraw</span>
+        </a>
+        <a href="../profile/index.html" class="mobile-nav-item ">
+            <i class="material-icons">settings</i>
+            <span>Settings</span>
+        </a>
+    </div>
+
+</body>
+
+
+<!--   -->
+
+</html>

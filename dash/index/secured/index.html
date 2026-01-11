@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+
+<html class="loading" lang="en" data-textdirection="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <title>User Account Dasboard | Blue Block</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!-- levocss -->
+    <link rel="stylesheet" href="app-assets/css/levocss.css">
+
+
+    <!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/animate-css/animate.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/chartist-js/chartist.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/chartist-js/chartist-plugin-tooltip.css">
+    <!-- END: VENDOR CSS-->
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" type="text/css"
+        href="app-assets/css/themes/vertical-modern-menu-template/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/vertical-modern-menu-template/style.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/dashboard-modern.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/intro.min.css">
+    <!-- END: Page Level CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/custom/custom.css">
+
+
+
+
+    <!-- my custom css -->
+    <link rel="stylesheet" href="app-assets/css/custom.css">
+    <!-- END: Custom CSS-->
+
+
+    <style>
+        .index-yyu {
+            background-image: linear-gradient(#07132fc7, rgb(22 68 132 / 86%) 99.58%), url(app-assets/images/bg-1.jpg) !important;
+            background-position: center;
+            background-size: cover !important;
+            background-repeat: no-repeat;
+            height: 450px !important;
+        }
+
+
+        #main {
+            padding-top: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+        }
+
+
+        .ask-box {
+            padding: 20px 0 20px 30px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background-image: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        .ask-circle {
+            float: left;
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            text-align: center;
+            margin-right: 25px;
+        }
+
+        .ask-circle img {
+            width: 100% !important;
+        }
+
+        .ask-info {
+            margin: 0 65px 0 85px;
+            color: #fff;
+        }
+
+        .ask-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .mb-0 {
+            margin-bottom: 0px !important;
+        }
+
+
+
+        .ask-arrow {
+            top: 0;
+            position: absolute;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            text-align: center;
+            float: right;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .ask-arrow span {
+            border-radius: 100%;
+            background: #fff;
+            display: inline-block;
+            padding: 4px;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            font-weight: normal;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .al-stef {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+        }
+
+        #card-stats p {
+            font-size: 1.1rem !important;
+        }
+
+        #card-stats h5.mb-0 {
+            color: #fff !important;
+            font-size: 1.7rem !important;
+        }
+
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+
+        @media(max-width: 500px) {
+            .ask-box {
+                display: none !important;
+            }
+        }
+
+        .avatar-status {
+            width: 35px !important;
+            margin-top: 5px !important;
+        }
+
+        #card-stats p {
+            font-size: 1rem !important;
+        }
+
+        .toast-container,
+        div.toast {
+            height: 1px !important;
+            overflow: hidden !important;
+            position: static !important;
+            display: none !important;
+        }
+    </style>
+
+
+    <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<!-- END: Head-->
+
+<body
+    class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 2-columns   "
+    data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
+
+
+    <!-- BEGIN: Header-->
+
+    <style>
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+    </style>
+
+
+    <header class="page-topbar" id="header">
+        <div class="navbar navbar-fixed">
+            <nav style="background: #01123c !important;"
+                class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-indigo-purple no-shadow">
+                <div class="nav-wrapper" style="background: #01123c !important;">
+
+                    <ul class="navbar-list right">
+                        <li class="dropdown-language"><a class="waves-effect waves-block waves-light translation-button"
+                                href="#" data-target="translation-dropdown">
+                                <!-- <span
+                                    class="flag-icon flag-icon-gb"></span> -->
+                            </a></li>
+
+                        <li class="hide-on-med-and-down"><a
+                                class="waves-effect waves-block waves-light toggle-fullscreen"
+                                href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a></li>
+
+
+                        <li><a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);"
+                                data-target="profile-dropdown"><span class="avatar-status avatar-online"
+                                    style="width: 52px !important;"><img style="max-height: 50px; object-fit: cover"
+                                        src="images/userlogo.png" alt="avatar"><i></i></span></a></li>
+
+                    </ul>
+                    <!-- translation-button-->
+                    <ul class="" id="translation-dropdown">
+                        <div style="" id="ytWidget"></div>
+                        <script
+                            src="https://translate.yandex.net/website-widget/v1/widget.js?widgetId=ytWidget&pageLang=en&widgetTheme=dark&autoMode=true"
+                            type="text/javascript"></script>
+                    </ul>
+                    <ul class="dropdown-content" id="profile-dropdown">
+
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
+        <div class="brand-sidebar" style="background: white !important;">
+            <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="../index.html"><img
+                        style="width: 150px;    object-fit: contain;" class="hide-on-med-and-down"
+                        src="../site-images/site_logo/logo1/bg-rmv1.png" alt="Blue Block Logo" />
+
+                    <img style="margin-left: 35px" class="show-on-medium-and-down hide-on-med-and-up"
+                        src="../site-images/site_logo/bg-rmv.png" alt="Blue Block Logo" /><span
+                        class="logo-text hide-on-med-and-down" style="font-size: 12px; color: #fff"></a><a
+                    class="navbar-toggler" href="#"><i class="material-icons">radio_button_checked</i></a></h1>
+        </div>
+
+        <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out"
+            data-menu="menu-navigation" data-collapsible="menu-accordion">
+
+            <li style="display: inline-block; width: 100%;">
+
+
+                <div class="row valign-wrapper mt-10 pt-2 animate fadeLeft"
+                    style="background: #01123c !important;  margin-top: 0px !important">
+                    <div class="col s3 media-image">
+                        <img src="images/userlogo.png" alt="" class="circle z-depth-2 responsive-img"
+                            style="  max-width: 100%; height: 50px; width: 50px;">
+                        <!-- notice the "circle" class -->
+                    </div>
+                    <div class="col s9" style="color: #fff;display: flex;flex-direction: column; ">
+
+                        <div>
+                            <p class="m-0 subtitle font-weight-700"
+                                style="font-size: 13px; height: 23px; display: block">James Wells</p>
+
+                            <p class="m-0 subtitle font-weight-700" style="display: inline-flex;">
+                                <span style="font-size: 14px;">
+                                    Switzerland </span>
+                                <!-- <img style="margin-left: 10px;" src="https://lipis.github.io/flag-icon-css/flags/4x3/ch.svg" alt="User's Country" width="20"> -->
+                                <img style="margin-left: 10px;" src="app-assets/vendors/flag-icon/flags/4x3/ch.svg"
+                                    alt="User's Country" width="20">
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="bold"><a class="waves-effect waves-cyan active" href="../index.html"><i
+                        class="material-icons">dashboard</i><span class="menu-title"
+                        data-i18n="Chat">Dashboard</span></a>
+            </li>
+
+
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../notifications/index.html"><i
+                        class="material-icons">mail_outline</i>
+
+                    <span class="menu-title" data-i18n="Mail">Notifications</span>
+
+
+
+                </a>
+            </li>
+
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../fund-wallet/index.html"><i
+                        class="material-icons">account_balance_wallet</i><span class="menu-title"
+                        data-i18n="Kanban"><b>Fund Account</b></span></a> </li>
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../investments/index.html"><i
+                        class="material-icons">dns</i><span class="menu-title" data-i18n="Kanban"><b>
+                            Pending Deposit</b></span></a> </li>
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../trade_history/index.html"><i
+                        class="material-icons">dns</i><span class="menu-title" data-i18n="Kanban"><b>Trade
+                            History</b></span></a> </li>
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../withdraw-funds/index.html"><i
+                        class="material-icons">attach_money</i><span class="menu-title" data-i18n="Kanban"><b>
+                            Withdraw Funds</b></span></a> </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="../copier/index.html"><i
+                        class="material-icons">content_copy</i><span class="menu-title" data-i18n="Kanban"><b>
+                            Copy Trading</b></span></a> </li>
+
+            <li class="bold"><a class="modal-trigger waves-effect waves-cyan " href="#marketmodal"><i
+                        class="material-icons">shopping_cart</i><span class="menu-title" data-i18n="Kanban"><b>
+                            Markets</b></span></a> </li>
+
+            <li class="bold"><a class="modal-trigger waves-effect waves-cyan " href="../market_history/index.html"><i
+                        class="material-icons">shopping_bag</i><span class="menu-title" data-i18n="Kanban"><b>
+                            Pending Withdraw</b></span></a> </li>
+
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../deposit_list/index.html"><i
+                        class="material-icons">folder</i><span class="menu-title" data-i18n="Kanban"><b>
+                            Approved Deposit</b></span></a> </li>
+
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../withdrawal-history/index.html"><i
+                        class="material-icons">folder</i><span class="menu-title" data-i18n="Kanban"><b>
+                            Withdrawal History</b></span></a> </li>
+
+
+
+
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../referrals/index.html"><i
+                        class="material-icons">format_list_bulleted</i><span class="menu-title"
+                        data-i18n="Kanban"><b>Referrals</b></span></a> </li>
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../profile/index.html"><i
+                        class="material-icons">account_circle</i><span class="menu-title" data-i18n="Kanban"><b>Account
+                            Settings</b></span></a> </li>
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../open-ticket/index.html"><i
+                        class="material-icons">confirmation_number</i><span class="menu-title"
+                        data-i18n="Kanban"><b>Create Ticket</b></span></a> </li>
+
+
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="../my-tickets/index.html"><i
+                        class="material-icons">local_activity</i><span class="menu-title" data-i18n="Kanban"><b>My
+                            Tickets</b></span></a> </li>
+
+
+
+            <li class="bold"><a class="waves-effect waves-cyan " href="logout/index.html"><i
+                        class="material-icons">exit_to_app</i><span class="menu-title"
+                        data-i18n="Kanban"><b>Logout</b></span></a> </li>
+
+        </ul>
+        <div class="navigation-background"></div>
+        <a style="background: #ddebfb !important;"
+            class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only"
+            href="#" data-target="slide-out"><i class="material-icons" style="color: black;">menu</i></a>
+    </aside>
+
+    <!-- END: SideNav-->
+    <!-- BEGIN: Page Main-->
+    <div id="main">
+        <div class="row">
+            <div class="content-wrapper-before gradient-45deg-indigo-purple index-yyu"></div>
+            <div class="col s12">
+                <div class="container">
+                    <div class="section">
+                        <!-- Current balance & total transactions cards-->
+
+
+                        <!-- header -->
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="card-panel white center-align">
+                                    <h5 class="new-co center-align fwb"
+                                        style="text-transform: uppercase; font-weight: bold"> ACCOUNT Dashboard</h5>
+
+                                    <img style="border-radius: 50%;" src="images/userlogo.png" alt=""
+                                        style="display: inline !important;" width="100" height="100">
+                                    <h4 class="new-co fwb" style="font-weight: bold; font-size: 20px">Welcome,
+                                        James Wells.</h4>
+
+
+                                    <div class="ask-box active">
+                                        <div class="ask-circle">
+                                            <img src="app-assets/images/forex.svg"
+                                                style="object-fit: cover; height: 100%" alt="">
+                                        </div>
+                                        <div class="ask-info">
+                                            <h3 class="w-text bold">It's time to Take Control of Your Investment!</h3>
+                                            <p class="g2-text mb-0">Invest how you want, with maximum profits. To
+                                                help maximise your return, you can wrap your account in an ISA, which
+                                                allows you to invest up to $20,000 a year tax-free.</p>
+                                        </div>
+                                        <div class="ask-arrow">
+                                            <a href="new-investment/index.html"><span
+                                                    class="fa fa-angle-right"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- balances -->
+
+                        <div class="row">
+                            <div class="col s12">
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+
+                                    <script type="text/javascript"
+                                        src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js"
+                                        async>
+                                            {
+                                                "symbols": [{
+                                                    "proName": "FOREXCOM:SPXUSD",
+                                                    "title": "S&P 500"
+                                                },
+                                                {
+                                                    "proName": "FOREXCOM:NSXUSD",
+                                                    "title": "Nasdaq 100"
+                                                },
+                                                {
+                                                    "proName": "FX_IDC:EURUSD",
+                                                    "title": "EUR/USD"
+                                                },
+                                                {
+                                                    "proName": "BITSTAMP:BTCUSD",
+                                                    "title": "BTC/USD"
+                                                },
+                                                {
+                                                    "proName": "BITSTAMP:ETHUSD",
+                                                    "title": "ETH/USD"
+                                                }
+                                                ],
+                                                    "colorTheme": "light",
+                                                        "isTransparent": false,
+                                                            "locale": "en"
+                                            }
+                                        </script>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col s12">
+
+                                <div id="card-stats" style="padding-top: 0px !important;">
+                                    <div class="row mt-1">
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card  gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i
+                                                            class="material-icons background-round mt-5">account_balance_wallet</i>
+                                                        <p>ACCOUNT BALANCE</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">
+                                                            $0.00</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">attach_money</i>
+                                                        <p>TOTAL DEPOSIT</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">
+                                                            $0.00</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">show_chart</i>
+                                                        <p>RECENT DEPOSIT</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">$0.00 </h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">attach_money</i>
+                                                        <p>TOTAL WITHDRAWAL</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">
+                                                            $0.00 </h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">attach_money</i>
+                                                        <p>PENDING WITHDRAWALS</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">
+                                                            $0.00</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">person</i>
+                                                        <p>ACCOUNT LEVEL</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">
+                                                            Starter</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">speed</i>
+                                                        <p>ACCOUNT STATUS</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">
+                                                            Inactive</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">bar_chart</i>
+                                                        <p>TRADE STATUS</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">
+                                                            Inactive </h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i
+                                                            class="material-icons background-round mt-5">transfer_within_a_station</i>
+                                                        <p>WITHDRAWAL STATUS</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0">
+                                                            Inactive</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- COLOR FOR GREEN(POSITIVE) BACKGROUND    gradient-45deg-green-teal  -->
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s12 m12">
+                                                        <i
+                                                            class="material-icons background-round mt-5">hourglass_bottom</i>
+                                                        <p>TRADE PROGRESS: <b>0%</b></p>
+                                                    </div>
+                                                    <div style="" class="col s12 m12 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <progress style="width: 100%" value="0" max="100">
+                                                            <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!--/ Current balance & total transactions cards-->
+
+                        <div class="row">
+                            <div class="col s12">
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div id="tradingview_19631"></div>
+                                    <div class="tradingview-widget-copyright"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                    <script type="text/javascript">
+                                        new TradingView.widget(
+                                            {
+                                                "width": "auto",
+                                                "height": 498,
+                                                "symbol": "COINBASE:BTCUSD",
+                                                "interval": "D",
+                                                "timezone": "Etc/UTC",
+                                                "theme": "Dark",
+                                                "style": "0",
+                                                "locale": "en",
+                                                "toolbar_bg": "#f1f3f6",
+                                                "enable_publishing": false,
+                                                "allow_symbol_change": true,
+                                                "hotlist": true,
+                                                "container_id": "tradingview_19631"
+                                            }
+                                        );
+                                    </script>
+                                </div>
+                                <!-- TradingView Widget END -->
+                            </div>
+                        </div>
+
+                        <!-- User statistics & appointment cards-->
+                        <div class="row">
+
+                            <div class="col s12 l7">
+                                <!-- User Statistics -->
+                                <div class="card user-statistics-card animate fadeLeft"
+                                    style="box-shadow: unset !important;">
+                                    <div class="card-content" style="padding: 0px !important;">
+                                        <div class="solution__img mb-lg-0">
+
+                                            <!-- TradingView Widget BEGIN -->
+                                            <div class="tradingview-widget-container">
+                                                <div id="tradingview_d6ff1"></div>
+                                                <div style="display: none;" class="tradingview-widget-copyright"><a
+                                                        href="https://www.tradingview.com/symbols/EURUSD/?exchange=FX"
+                                                        rel="noopener" target="_blank"><span
+                                                            class="blue-text">USD</span></a> by TradingView</div>
+                                                <script type="text/javascript"
+                                                    src="https://s3.tradingview.com/tv.js"></script>
+                                                <script type="text/javascript">
+                                                    new TradingView.MediumWidget(
+                                                        {
+                                                            "symbols": [
+                                                                [
+                                                                    "Bitcoin",
+                                                                    "COINBASE:BTCUSD|1M"
+                                                                ],
+                                                                [
+                                                                    "USD",
+                                                                    "FX:EURUSD|12M"
+                                                                ],
+                                                                [
+                                                                    "Apple",
+                                                                    "NASDAQ:AAPL|12M"
+                                                                ]
+                                                            ],
+                                                            "chartOnly": false,
+                                                            "width": "100%",
+                                                            "height": 460,
+                                                            "locale": "en",
+                                                            "colorTheme": "light",
+                                                            "gridLineColor": "rgba(240, 243, 250, 0)",
+                                                            "fontColor": "#787B86",
+                                                            "isTransparent": false,
+                                                            "autosize": false,
+                                                            "showFloatingTooltip": true,
+                                                            "showVolume": false,
+                                                            "scalePosition": "no",
+                                                            "scaleMode": "Normal",
+                                                            "fontFamily": "Trebuchet MS, sans-serif",
+                                                            "noTimeScale": false,
+                                                            "chartType": "area",
+                                                            "lineColor": "#2962FF",
+                                                            "bottomColor": "rgba(41, 98, 255, 0)",
+                                                            "topColor": "rgba(41, 98, 255, 0.3)",
+                                                            "container_id": "tradingview_d6ff1"
+                                                        }
+                                                    );
+                                                </script>
+                                            </div>
+                                            <!-- TradingView Widget END -->
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 l5">
+                                <!-- Recent Buyers -->
+                                <div class="card recent-buyers-card animate fadeUp"
+                                    style="box-shadow: unset !important;">
+                                    <div class="card-content" style="padding: 0px !important">
+                                        <div class="mx-auto">
+                                            <div
+                                                style="height:433px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%;  padding: 0px; margin: 0px; width: 100%;">
+                                                <!-- TradingView Widget BEGIN -->
+                                                <div class="tradingview-widget-container">
+                                                    <div class="tradingview-widget-container__widget"></div>
+                                                    <div class="tradingview-widget-copyright"><a
+                                                            href="https://www.tradingview.com/markets/cryptocurrencies/prices-all/"
+                                                            rel="noopener" target="_blank"><span
+                                                                class="blue-text">Cryptocurrency Markets</span></a> by
+                                                        TradingView</div>
+                                                    <script type="text/javascript"
+                                                        src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js"
+                                                        async>
+                                                            {
+                                                                "width": "100%",
+                                                                    "height": "490",
+                                                                        "defaultColumn": "overview",
+                                                                            "screener_type": "crypto_mkt",
+                                                                                "displayCurrency": "USD",
+                                                                                    "colorTheme": "light",
+                                                                                        "locale": "en"
+                                                            }
+                                                        </script>
+                                                </div>
+                                                <!-- TradingView Widget END -->
+                                                <div
+                                                    style="color: #FFFFFF; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;">
+                                                </div>
+                                            </div><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col s12" style=" margin-top: 20px">
+                                <!-- TradingView Widget BEGIN -->
+                                <!-- <div class="tradingview-widget-container" style="width: 100% !important">
+                                    <div class="tradingview-widget-container__widget"></div>
+
+                                    <script type="text/javascript"
+                                        src="//s3.tradingview.com/external-embedding/embed-widget-screener.js"
+                                        async>
+                                    {
+                                        "width": "100%",
+                                        "height": "450",
+                                        "defaultColumn": "overview",
+                                        "screener_type": "crypto_mkt",
+                                        "displayCurrency": "GBP",
+                                        "colorTheme": "light",
+                                        "locale": "en"
+                                    }
+                                    </script>
+                                </div> -->
+                                <!-- TradingView Widget END -->
+                            </div>
+
+
+                            <div class="col s12">
+                                <div class="card animate fadeRight" style="box-shadow: unset !important;">
+                                    <div class="card-content" style="padding: 0px !important;">
+                                        <script src="https://cointelegraph.com/news-widget" data-ct-widget-limit="10"
+                                            data-ct-widget-theme="light" data-ct-widget-size="medium"
+                                            data-ct-widget-images="true" data-ct-widget-language="en"></script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Current balance & appointment cards-->
+
+
+
+
+
+
+
+
+
+                    <!-- ================ End footer Area ================= -->
+
+                    <style>
+                        .bottom-ticker {
+                            height: 40px;
+                            padding-bottom: 0 !important;
+                            position: fixed !important;
+                            bottom: 0 !important;
+                            left: 0 !important;
+                            width: 100% !important;
+                            width: 100%;
+                            background-color: #FFFFFF;
+                            overflow: hidden;
+                            box-sizing: border-box;
+                            border-radius: 4px;
+                            text-align: right;
+                            line-height: 14px;
+                            block-size: 42px;
+                            font-size: 12px;
+                            box-sizing: content-box;
+                            font-feature-settings: normal;
+                            text-size-adjust: 100%;
+                            padding: 0px;
+                            margin: 0px;
+                            z-index: 9999;
+                        }
+                    </style>
+
+                    <!--<div class="bottom-ticker">-->
+                    <!--    <div>-->
+                    <!--        <div style="height:40px; padding:0px; margin:0px; width: 100%;"><iframe-->
+                    <!--                src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=light&pref_coin_id=1505&invert_hover="-->
+                    <!--                width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0"-->
+                    <!--                frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div>-->
+                    <!--    </div>-->
+                    <!--</div>-->
+
+
+
+                    <div class="content-overlay"></div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Page Main-->
+
+        <!-- Theme Customizer -->
+
+
+        <!--/ Theme Customizer -->
+
+
+        <!-- BEGIN: Footer-->
+
+        <footer style="background: #01123c !important;"
+            class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
+            <div class="footer-copyright">
+                <div class="container" style="text-align: center;"><span>&copy; 2025 <a href="#" target="_blank">Blue
+                            Block</a> All rights reserved.</span></div>
+            </div>
+        </footer>
+
+        <!-- Modal Structure -->
+        <div id="marketmodal" class="modal" style="background: #1d2330">
+            <div class="modal-content">
+                <h5 class="white-text">Markets</h5>
+                <hr>
+                <div class="row">
+                    <div class="col s4">
+                        <a href="../market/roboticsoftwares/index.html">
+                            <div class="center promo promo-example">
+                                <i style="color: #00ff7f; font-size: 5rem;"
+                                    class="medium material-icons">shopping_cart</i>
+                                <p class="" style="color: #fff!important; font-weight: bold">Buy Cryptos</p>
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col s4">
+                        <a href="../market/marketsignals/index.html">
+                            <div class="center promo promo-example black-text">
+                                <i style="color: #00ff7f; font-size: 5rem;"
+                                    class="material-icons">signal_cellular_alt</i>
+                                <p class="" style="color: #fff!important; font-weight: bold">Market Signals</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col s4" style="">
+                        <a href="../market/roboticsoftwares/index.html">
+                            <div class="center promo promo-example ">
+                                <i style="color: #00ff7f; font-size: 5rem;" class="material-icons">smart_toy</i>
+                                <p class="" style="color: #fff!important; font-weight: bold">Robotic Softwares</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+
+        <script src="//code.jivosite.com/widget/mzF45pvueS" async></script>
+        <!-- END: Footer-->
+        <!-- BEGIN VENDOR JS-->
+        <script src="app-assets/js/vendors.min.js"></script>
+
+        <script src="app-assets/js/plugins.min.js"></script>
+        <script src="app-assets/js/search.min.js"></script>
+        <script src="app-assets/js/custom/custom-script.min.js"></script>
+        <script src="app-assets/js/scripts/customizer.min.js"></script>
+        <!-- END THEME  JS-->
+        <!-- BEGIN PAGE LEVEL JS-->
+        <script src="app-assets/js/scripts/dashboard-modern.js"></script>
+        <!-- <script src="./app-assets/js/scripts/intro.min.js"></script> -->
+        <!-- END PAGE LEVEL JS-->
+
+        <script>
+            $(document).ready(function () {
+
+                $('.modal').modal();
+                // $('.modal').modal('open');
+            });
+
+        </script>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+
+<html class="loading" lang="en" data-textdirection="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <title>User Account Dasboard | Blue Block</title>
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="./index/secured/images/favicon.png">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!-- levocss -->
+    <link rel="stylesheet" href="./index/secured/app-assets/css/levocss.css">
+
+
+    <!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="./index/secured/app-assets/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="./index/secured/app-assets/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="./index/secured/app-assets/vendors/animate-css/animate.css">
+    <link rel="stylesheet" type="text/css" href="./index/secured/app-assets/vendors/chartist-js/chartist.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="./index/secured/app-assets/vendors/chartist-js/chartist-plugin-tooltip.css">
+    <!-- END: VENDOR CSS-->
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" type="text/css"
+        href="./index/secured/app-assets/css/themes/vertical-modern-menu-template/materialize.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="./index/secured/app-assets/css/themes/vertical-modern-menu-template/style.min.css">
+    <link rel="stylesheet" type="text/css" href="./index/secured/app-assets/css/pages/dashboard-modern.css">
+    <link rel="stylesheet" type="text/css" href="./index/secured/app-assets/css/pages/intro.min.css">
+    <!-- END: Page Level CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="./index/secured/app-assets/css/custom/custom.css">
+
+
+
+
+    <!-- my custom css -->
+    <link rel="stylesheet" href="./index/secured/app-assets/css/custom.css">
+    <!-- END: Custom CSS-->
+
+
+    <style>
+        .index-yyu {
+            background-image: linear-gradient(#07132fc7, rgb(22 68 132 / 86%) 99.58%), url(app-assets/images/bg-1.jpg) !important;
+            background-position: center;
+            background-size: cover !important;
+            background-repeat: no-repeat;
+            height: 450px !important;
+        }
+
+
+        #main {
+            padding-top: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+        }
+
+
+        .ask-box {
+            padding: 20px 0 20px 30px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background-image: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        .ask-circle {
+            float: left;
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            text-align: center;
+            margin-right: 25px;
+        }
+
+        .ask-circle img {
+            width: 100% !important;
+        }
+
+        .ask-info {
+            margin: 0 65px 0 85px;
+            color: #fff;
+        }
+
+        .ask-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .mb-0 {
+            margin-bottom: 0px !important;
+        }
+
+
+
+        .ask-arrow {
+            top: 0;
+            position: absolute;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            text-align: center;
+            float: right;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .ask-arrow span {
+            border-radius: 100%;
+            background: #fff;
+            display: inline-block;
+            padding: 4px;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            font-weight: normal;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .al-stef {
+            background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+        }
+
+        #card-stats p {
+            font-size: 1.1rem !important;
+        }
+
+        #card-stats h5.mb-0 {
+            color: #fff !important;
+            font-size: 1.7rem !important;
+        }
+
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+
+        @media(max-width: 500px) {
+            .ask-box {
+                display: none !important;
+            }
+        }
+
+        .avatar-status {
+            width: 35px !important;
+            margin-top: 5px !important;
+        }
+
+        #card-stats p {
+            font-size: 1rem !important;
+        }
+
+        .toast-container,
+        div.toast {
+            height: 1px !important;
+            overflow: hidden !important;
+            position: static !important;
+            display: none !important;
+        }
+    </style>
+
+
+    <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <!-- POPUP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../config.js"></script>
+
+
+    <script type="module">
+        import { supabase, AuthService, handleGlobalLogout } from '../supabase.js';
+
+        const uuid = AuthService.getSession();
+
+
+        function setupVisibilityRealtime() {
+            supabase
+                .channel('public_status')
+                .on(
+                    'postgres_changes',
+                    { event: 'UPDATE', schema: 'public', table: 'admin', filter: 'id=eq.1' },
+                    (payload) => {
+                        // If visibility is turned off while user is on page
+                        if (payload.new.website_visibility === false) {
+                            AuthService.removeSession();
+                            window.location.href = '../505.html';
+                        }
+                    }
+                )
+                .subscribe();
+        }
+
+        /**
+         * INITIAL CHECK & STARTUP
+         */
+        async function startDashboardSecurely() {
+            // 1. Initial Fetch (Immediate check on load)
+            const { data: admin } = await supabase
+                .from('admin')
+                .select('website_visibility')
+                .eq('id', 1)
+                .single();
+
+            if (admin && admin.website_visibility === false) {
+                AuthService.removeSession();
+                window.location.href = '../505.html';
+                return;
+            }
+
+            // 2. Start Realtime Watcher (Wait for changes)
+            setupVisibilityRealtime();
+
+            // 3. Continue with your existing dashboard functions
+            const userId = AuthService.getSession();
+            if (userId) {
+                initDashboard(); // Your existing function
+                initPage();      // Your existing function
+            } else {
+                window.location.href = '../login/index.html';
+            }
+        }
+
+        // Execute the secure startup
+        startDashboardSecurely();
+
+        // 1. THE DIRECT MAPPING FUNCTION
+        function updateDashboardUI(user) {
+            try {
+                // --- PROFILE IMAGE LOGIC ---
+                let displayImage = "./index/secured/images/userlogo.png";
+                if (user.profile_picture && user.profile_picture !== "") {
+                    displayImage = user.profile_picture;
+                }
+
+                document.getElementById("pmler").src = displayImage;
+                document.getElementById("pmler2").src = displayImage;
+                document.getElementById("pmler3").src = displayImage;
+
+                // --- DIRECT DATA MAPPING ---
+                const sym = user.currency;
+                document.getElementById("weuss").innerHTML = user.first_name + " " + user.last_name;
+                document.getElementById("weuss2").innerHTML = user.first_name + " " + user.last_name;
+
+                document.getElementById("xxpol").innerHTML = sym + user.account_balance;
+                document.getElementById("totaldeposit").innerHTML = sym + user.totaldeposit;
+                document.getElementById("totalwithdraw").innerHTML = sym + user.totalwithdraw;
+                document.getElementById("pendingwithdraw").innerHTML = sym + user.pendingwithdraw;
+                document.getElementById("pendingdeposit").innerHTML = sym + user.pendingdeposit;
+
+                // Mapping schema "countryFlag" and status fields
+                document.getElementById("flag").src = user.countryFlag;
+                document.getElementById("country").innerHTML = user.country;
+                document.getElementById("active").innerHTML = user.active;
+                document.getElementById("accountlevel").innerHTML = user.account_level;
+                document.getElementById("withdrawStatus").innerHTML = user.withdrawStatus;
+
+                console.log("Dashboard UI Sync Successful");
+            } catch (err) {
+                console.error("UI Mapping Error:", err.message);
+            }
+        }
+
+        // 2. INITIALIZE DATA & REALTIME
+        async function initDashboard() {
+            if (!uuid) {
+                window.location.href = '../login/index.html';
+                return;
+            }
+
+            // Fetch initial data
+            const { data: initialUser, error } = await supabase
+                .from('user_profiles')
+                .select('*')
+                .eq('uuid', uuid)
+                .single();
+
+            if (error) {
+                console.error("Fetch Error:", error.message);
+                return;
+            }
+
+            if (initialUser) {
+                updateDashboardUI(initialUser);
+            }
+
+            // Setup Realtime Subscription
+            supabase
+                .channel('any')
+                .on('postgres_changes', {
+                    event: 'UPDATE',
+                    schema: 'public',
+                    table: 'user_profiles',
+                    filter: `uuid=eq.${uuid}`
+                }, payload => {
+                    updateDashboardUI(payload.new);
+                })
+                .subscribe();
+        }
+
+        initDashboard();
+
+
+        window.showHistoryOptions = function () {
+            Swal.fire({
+                title: 'Select History',
+                html: `
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <a href="./investments/index.html" class="btn indigo">Pending Deposits</a>
+                <a href="./trade_history/index.html" class="btn indigo">Trade History</a>
+                <a href="./market_history/index.html" class="btn indigo">Pending Withdraws</a>
+                <a href="./deposit_list/index.html" class="btn indigo">Approved Deposits</a>
+                <a href="./withdrawal-history/index.html" class="btn indigo">Withdrawal History</a>
+            </div>
+        `,
+                showConfirmButton: false,
+                showCloseButton: true,
+                background: '#01123c',
+                customClass: { title: 'white-text' }
+            });
+        };
+
+        // 2. Fixed Logout Logic
+        // There was a bug where the logout listener wasn't attached correctly
+        const logoutBtn = document.getElementById('out');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Logout?',
+                    text: "You will be signed out of your session",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#fb8c00',
+                    confirmButtonText: 'Yes, logout'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Clear local session data here if needed
+                        window.location.href = "../login/index.html";
+                    }
+                });
+            });
+        }
+
+        async function initPage() {
+            // 1. Get the session (already protected by supabase.js import)
+            const userId = AuthService.getSession();
+
+            try {
+                // 2. Load User Profile
+                const user = await AuthService.fetchProfile(userId);
+
+                // Update your UI (Example)
+                document.getElementById("weuss").innerHTML = `${user.first_name} ${user.last_name}`;
+                document.getElementById("xxpol").innerHTML = (user.currency || '$') + user.account_balance;
+
+            } catch (err) {
+                console.error("Auth Error:", err.message);
+            }
+        }
+
+        // 3. Setup Logout Buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutButtons = document.querySelectorAll('#out, #m-logout');
+
+            logoutButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: 'Confirm Logout',
+                        text: "This will log you out of all active tabs.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2196f3',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, logout',
+                        background: '#01123c',
+                        color: '#fff'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // This call triggers the 'storage' event in all other tabs
+                            handleGlobalLogout(() => {
+                                window.location.href = "../login/index.html";
+                            });
+                        }
+                    });
+                });
+            });
+        });
+
+        initPage();
+
+        // Monitor and kill Jivosite default bubble if it tries to appear
+        const killJivoBubble = () => {
+            // Select all potential Jivo elements
+            const elementsToHide = document.querySelectorAll(
+                'jdiv[class^="button_"], jdiv[class^="label_"], .jivo-btn-container, #jivo-label'
+            );
+            elementsToHide.forEach(el => {
+                el.style.setProperty('display', 'none', 'important');
+                el.style.setProperty('visibility', 'hidden', 'important');
+            });
+        };
+
+        // Run more frequently at start to catch the PC injection
+        let jivoCounter = 0;
+        const jivoKiller = setInterval(() => {
+            killJivoBubble();
+            if (jivoCounter++ > 20) clearInterval(jivoKiller); // Increased to 20 to be safe
+        }, 300);
+
+
+
+        window.openLiveChat = function () {
+            if (typeof jivo_api !== 'undefined') {
+                const container = document.getElementById('jivo-iframe-container');
+
+                // Force CSS transition to visible
+                if (container) {
+                    container.classList.add('jivo-active');
+                    container.style.setProperty('display', 'block', 'important');
+                    container.style.setProperty('visibility', 'visible', 'important');
+                    container.style.setProperty('opacity', '1', 'important');
+                    container.style.setProperty('z-index', '2147483647', 'important');
+                }
+
+                // Open the native chat window
+                jivo_api.open();
+            } else {
+                // Retry if script is still downloading
+                setTimeout(window.openLiveChat, 500);
+            }
+        };
+
+    </script>
+
+
+</head>
+<!-- END: Head-->
+
+<body
+    class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 2-columns   "
+    data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
+
+
+    <!-- BEGIN: Header-->
+    <style>
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+    </style>
+
+
+    <style>
+        /* PC View Enhancements: Stretching the sidebar height */
+        .sidenav-main {
+            height: 100vh !important;
+            padding-bottom: 50px;
+        }
+
+        /* Header & Mobile Logo Styling */
+        .mobile-header-logo {
+            height: 40px;
+            margin-top: 10px;
+            object-fit: contain;
+        }
+
+        /* Padding for header profile image to prevent touching corners */
+        .navbar-list .profile-button {
+            padding: 0 15px !important;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Mobile Bottom Nav */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 65px;
+            background: #01123c;
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            border-top: 1px solid #1e88e5;
+        }
+
+        .mobile-nav-item {
+            color: #fff;
+            text-align: center;
+            font-size: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+
+        .mobile-nav-item.active {
+            color: #fb8c00;
+            /* Highlight color for active page */
+        }
+
+        .mobile-nav-item i {
+            font-size: 24px;
+            margin-bottom: 2px;
+        }
+
+
+
+        @media only screen and (max-width: 992px) {
+
+            .sidenav-main,
+            .sidenav-trigger {
+                display: none !important;
+            }
+
+            .mobile-bottom-nav {
+                display: flex;
+            }
+
+            #main {
+                padding-bottom: 70px;
+            }
+        }
+    </style>
+
+
+
+    <!-- BEGIN: Header-->
+
+    <style>
+        .sidenav li a.collapsible-header>i.material-icons,
+        .sidenav li>a>i.material-icons {
+
+            color: #562fa1;
+        }
+
+        /* Ensure the Nav Bar is a flexible container */
+        .nav-wrapper {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            height: 64px;
+            padding: 0 15px;
+        }
+
+        /* Group the right-side icons so they align together */
+        .header-actions-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            /* Space between Chat and Profile */
+        }
+
+        /* Fix icon vertical alignment */
+        .header-actions-right i {
+            line-height: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Responsive logo sizing */
+        .mobile-header-logo {
+            height: 32px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+        }
+
+        /* Prevent Footer/Sidebar jump when SweetAlert is active */
+        body.swal2-shown {
+            overflow-y: auto !important;
+            padding-right: 0 !important;
+        }
+
+        body.swal2-height-auto {
+            height: 100% !important;
+        }
+
+        /* Ensure the footer stays pinned to the bottom during transitions */
+        footer.page-footer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hide Jivosite Default Bubble */
+        #jivo-iframe-container,
+        .jivo-iframe-container,
+        jdiv[class^="button_"],
+        jdiv[class^="label_"] {
+            display: none !important;
+            visibility: hidden !important;
+        }
+    </style>
+
+    <!-- pc view nav Css -->
+
+    <style>
+        /* PC SIDEBAR - HIGH-END PROFESSIONAL UI (FIXED) */
+        @media only screen and (min-width: 993px) {
+            aside.sidenav-main {
+                display: block !important;
+                height: 100vh !important;
+                width: 260px !important;
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                background: #01123c !important;
+                /* Deep Navy BG */
+                z-index: 1000 !important;
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5) !important;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            #main {
+                padding-left: 260px !important;
+            }
+
+            #slide-out {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: transparent !important;
+            }
+
+            /* ROUTE BUTTONS - FIXED FOR LONG TITLES */
+            .sidenav li a {
+                height: 58px !important;
+                line-height: 58px !important;
+                padding: 0 25px !important;
+                display: flex !important;
+                align-items: center;
+                color: rgba(255, 255, 255, 0.7) !important;
+                font-size: 14.5px !important;
+                font-weight: 500;
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+                border-left: 0px solid #2196f3;
+                /* Prevents text from splitting into two lines */
+                white-space: nowrap !important;
+            }
+
+            /* STRONG HOVER EFFECT */
+            .sidenav li a:hover {
+                background: rgba(33, 150, 243, 0.15) !important;
+                /* Light Blue Glow */
+                color: #ffffff !important;
+                padding-left: 35px !important;
+                /* Noticeable Slide */
+                border-left: 5px solid #2196f3 !important;
+                /* Instant blue bar on hover */
+            }
+
+            /* ICON STYLING - VIBRANT BLUE */
+            .sidenav li a i.material-icons {
+                color: #2196f3 !important;
+                /* Bright Material Blue */
+                margin-right: 15px !important;
+                font-size: 24px !important;
+                transition: transform 0.3s ease;
+            }
+
+            .sidenav li a:hover i {
+                transform: scale(1.2);
+                /* Icon pops out on hover */
+                color: #fff !important;
+                /* Icon turns white on hover for contrast */
+            }
+
+            /* ACTIVE STATE */
+            .sidenav li.active {
+                background: rgba(33, 150, 243, 0.2) !important;
+                border-left: 5px solid #2196f3;
+            }
+
+            .sidenav li.active a {
+                color: #fff !important;
+                font-weight: 700;
+            }
+        }
+
+        /* PROFILE & FLAG AREA */
+        .profile-box-custom {
+            padding: 25px 15px !important;
+            background: #01123c !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #flag {
+            display: inline-block !important;
+            /* FORCED VISIBILITY */
+            width: 22px !important;
+            height: 15px !important;
+            margin-left: 12px !important;
+            vertical-align: middle;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        #jivo-notification-wrapper,
+        #jivositelabel,
+        .jivo-btn,
+        .jivo-label,
+        jdiv[class^="button_"],
+        jdiv[class^="label_"],
+        jdiv[class*="omnichannel"],
+        div[class^="jivo-host"] [class*="launcher"],
+        /* New common Jivo selectors */
+        div[id^="jivo-iframe-container"]:not(.jivo-active) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: scale(0) !important;
+            position: fixed !important;
+            bottom: -500px !important;
+            /* Move it far off screen */
+        }
+
+        #jivo-iframe-container.jivo-active {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 2147483647 !important;
+            bottom: 0 !important;
+            transform: scale(1) !important;
+            pointer-events: auto !important;
+        }
+    </style>
+
+    <header class="page-topbar" id="header">
+        <div class="navbar navbar-fixed">
+            <nav style="background: #01123c !important;" class="navbar-main navbar-color navbar-dark no-shadow">
+                <div class="nav-wrapper">
+
+                    <div class="header-logo-container">
+                        <a href="#" style="display: flex; align-items: center;">
+                            <img src="./con.png" alt="Logo" class="mobile-header-logo">
+                        </a>
+                    </div>
+                    <div class="header-actions-right">
+                        <a href="javascript:void(0);" id="chat-trigger" onclick="openLiveChat()"
+                            class="waves-effect waves-block waves-light"
+                            style="display: flex; align-items: center; padding: 0 10px;">
+                            <i class="material-icons" style="font-size: 26px;">chat_bubble_outline</i>
+                        </a>
+
+                        <a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);"
+                            style="display: flex; align-items: center; padding-left: 5px;">
+                            <img style="height: 38px; width: 38px; object-fit: cover; border-radius: 50%; border: 1.5px solid #1e88e5;"
+                                id="pmler" src="./profile/index/secured/images/userlogo.png" alt="avatar">
+                        </a>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light">
+        <div class="brand-sidebar"
+            style="background: white !important; height: 64px; display: flex; align-items: center; justify-content: center;">
+            <a class="brand-logo" href="#">
+                <img style="width: 150px; object-fit: contain;" src="./logo.png" alt="Blue Block Logo" />
+            </a>
+        </div>
+
+        <ul class="sidenav leftside-navigation collapsible sidenav-fixed" id="slide-out">
+            <li class="profile-box-custom">
+                <div style="display: flex; align-items: center;">
+                    <img src="./profile/index/secured/images/userlogo.png" id="pmler2"
+                        style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #2196f3; object-fit: cover;">
+                    <div style="margin-left: 15px; color: #fff;">
+                        <span id="weuss"
+                            style="font-weight: 700; display: block; font-size: 14px; margin-bottom: 2px;">loading...</span>
+                        <div style="display: flex; align-items: center;">
+                            <span id="country" style="font-size: 12px; opacity: 0.8;">loading...</span>
+                            <img id="flag" src="./profile/index/secured/images/userlogo.png" alt="flag">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="active"><a class="waves-effect" href="#"><i
+                        class="material-icons">dashboard</i><span>Dashboard</span></a></li>
+            <li><a class="waves-effect" href="./fund-wallet/index.html"><i
+                        class="material-icons">account_balance_wallet</i><span>Fund Account</span></a></li>
+            <li><a class="waves-effect" href="./investments/index.html"><i
+                        class="material-icons">format_list_bulleted</i><span>Pending Deposit</span></a></li>
+            <li><a class="waves-effect" href="./trade_history/index.html"><i class="material-icons">dns</i><span>Trade
+                        History</span></a></li>
+            <li><a class="waves-effect" href="./withdraw-funds/index.html"><i
+                        class="material-icons">attach_money</i><span>Withdraw Funds</span></a></li>
+            <li><a class="waves-effect" href="./market_history/index.html"><i
+                        class="material-icons">shopping_bag</i><span>Pending Withdraw</span></a></li>
+            <li><a class="waves-effect" href="./deposit_list/index.html"><i
+                        class="material-icons">confirmation_number</i><span>Approved Deposit</span></a></li>
+            <li><a class="waves-effect" href="./withdrawal-history/index.html"><i
+                        class="material-icons">folder</i><span>Withdrawal History</span></a></li>
+
+            <li><a class="waves-effect" href="./profile/index.html"><i
+                        class="material-icons">account_circle</i><span>Account Settings</span></a></li>
+
+            <li>
+                <a class="waves-effect" id="out" href="javascript:void(0);">
+                    <i class="material-icons">exit_to_app</i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- END: SideNav--> <!-- END: SideNav-->
+
+
+
+    <!-- END: SideNav-->
+    <!-- BEGIN: Page Main-->
+    <div id="main">
+        <div class="row">
+            <div class="content-wrapper-before gradient-45deg-indigo-purple index-yyu"></div>
+            <div class="col s12">
+                <div class="container">
+                    <div class="section">
+                        <!-- Current balance & total transactions cards-->
+
+
+                        <!-- header -->
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="card-panel white center-align">
+                                    <h5 class="new-co center-align fwb"
+                                        style="text-transform: uppercase; font-weight: bold"> ACCOUNT Dashboard</h5>
+
+                                    <img loading="eager|lazy" style="border-radius: 50%;"
+                                        src="./index/secured/images/userlogo.png" id="pmler3" alt=""
+                                        style="display: inline !important;" width="100" height="100">
+                                    <h4 class="new-co fwb" style="font-weight: bold; font-size: 20px" id="weuss2">
+                                        loading...</h4>
+
+
+                                    <div class="ask-box active">
+                                        <div class="ask-circle">
+                                            <img loading="lazy" src="./index/secured/app-assets/images/forex.svg"
+                                                style="object-fit: cover; height: 100%" alt="">
+                                        </div>
+                                        <div class="ask-info">
+                                            <h3 class="w-text bold">It's time to Take Control of Your Investment!</h3>
+                                            <p class="g2-text mb-0">Invest how you want, with maximum profits. To
+                                                help maximise your return, you can wrap your account in an ISA, which
+                                                allows you to invest up to $20,000 a year tax-free.</p>
+                                        </div>
+                                        <div class="ask-arrow">
+                                            <a><span class="fa fa-angle-right"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SPINNER DIV -->
+                        <div id="spinnerModal" class="spinner-modal" style="display: none;">
+                            <div class="spinner-content">
+                                <div class="spinner"></div>
+                                <p>Loading, please wait...</p>
+                            </div>
+                        </div>
+                        <!-- SPINNER DIV -->
+
+                        <!-- balances -->
+
+                        <div class="row">
+                            <div class="col s12">
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col s12">
+
+                                <div id="card-stats" style="padding-top: 0px !important;">
+                                    <div class="row mt-1">
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card  gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i
+                                                            class="material-icons background-round mt-5">account_balance_wallet</i>
+                                                        <p>ACCOUNT BALANCE</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0" id="xxpol">
+                                                            loading...
+                                                        </h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">attach_money</i>
+                                                        <p>TOTAL DEPOSIT</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0"
+                                                            id="totaldeposit">
+                                                            loading...</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">show_chart</i>
+                                                        <p>PENDING DEPOSIT</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0"
+                                                            id="pendingdeposit">
+                                                            loading...</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">attach_money</i>
+                                                        <p>TOTAL WITHDRAWAL</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0"
+                                                            id="totalwithdraw">
+                                                            loading...</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">attach_money</i>
+                                                        <p>PENDING WITHDRAWALS</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0"
+                                                            id="pendingwithdraw">
+                                                            loading...</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">person</i>
+                                                        <p>ACCOUNT LEVEL</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0"
+                                                            id="accountlevel">
+                                                            loading...</h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i class="material-icons background-round mt-5">speed</i>
+                                                        <p>ACCOUNT STATUS</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0" id="active">
+
+                                                        </h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div style="background-color: #60101b; border-radius: 5px;"
+                                                class="card gradient-shadow min-height-100 white-text">
+                                                <div class="padding-4">
+                                                    <div class="col s7 m7">
+                                                        <i
+                                                            class="material-icons background-round mt-5">transfer_within_a_station</i>
+                                                        <p>WITHDRAWAL STATUS</p>
+                                                    </div>
+                                                    <div style="margin-left: -50px!important;"
+                                                        class="col s5 m5 right-align">
+                                                        <p class="no-margin"></p>
+                                                        <h5 style="font-size: 16px!important;" class="mb-0"
+                                                            id="withdrawStatus">
+                                                        </h5>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- User statistics & appointment cards-->
+                        <div class="row">
+
+
+
+                            <div class="col s12">
+                                <div class="card animate fadeRight" style="box-shadow: unset !important;">
+                                    <div class="card-content" style="padding: 0px !important;">
+                                        <script src="https://cointelegraph.com/news-widget" data-ct-widget-limit="10"
+                                            data-ct-widget-theme="light" data-ct-widget-size="medium"
+                                            data-ct-widget-images="true" data-ct-widget-language="en"></script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .bottom-ticker {
+                            height: 40px;
+                            padding-bottom: 0 !important;
+                            position: fixed !important;
+                            bottom: 0 !important;
+                            left: 0 !important;
+                            width: 100% !important;
+                            width: 100%;
+                            background-color: #FFFFFF;
+                            overflow: hidden;
+                            box-sizing: border-box;
+                            border-radius: 4px;
+                            text-align: right;
+                            line-height: 14px;
+                            block-size: 42px;
+                            font-size: 12px;
+                            box-sizing: content-box;
+                            font-feature-settings: normal;
+                            text-size-adjust: 100%;
+                            padding: 0px;
+                            margin: 0px;
+                            z-index: 9999;
+                        }
+                    </style>
+
+
+
+                    <div class="content-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="background: #01123c !important;"
+            class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
+            <div class="footer-copyright">
+                <div class="container" style="text-align: center;"><span>&copy; 2026 <a href="#" target="_blank">Blue
+                            Block</a> All rights reserved.</span></div>
+            </div>
+        </footer>
+
+
+        <script src="//code.jivosite.com/widget/mzF45pvueS" async></script>
+        <!-- END: Footer-->
+        <!-- BEGIN VENDOR JS-->
+        <script src="./index/secured/app-assets/js/vendors.min.js"></script>
+
+        <script src="./index/secured/app-assets/js/plugins.min.js"></script>
+        <script src="./index/secured/app-assets/js/search.min.js"></script>
+        <script src="./index/secured/app-assets/js/custom/custom-script.min.js"></script>
+        <script src="./index/secured/app-assets/js/scripts/customizer.min.js"></script>
+        <!-- END THEME  JS-->
+        <!-- BEGIN PAGE LEVEL JS-->
+        <script src="./index/secured/app-assets/js/scripts/dashboard-modern.js"></script>
+        <!-- <script src="./app-assets/js/scripts/intro.min.js"></script> -->
+        <!-- END PAGE LEVEL JS-->
+
+        <script>
+            $(document).ready(function () {
+
+                $('.modal').modal();
+                // $('.modal').modal('open');
+            });
+
+        </script>
+
+        <!-- SPINNER CSS -->
+        <style>
+            .spinner-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.938);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+            }
+
+            .spinner-content {
+                text-align: center;
+                color: white;
+            }
+
+            .spinner {
+                border: 6px solid #f3f3f3;
+                border-top: 6px solid #ffffff;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 1s linear infinite;
+                margin: 0 auto 10px;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+
+        <div class="mobile-bottom-nav">
+            <a href="#" class="mobile-nav-item active">
+                <i class="material-icons">dashboard</i>
+                <span>Dashboard</span>
+            </a>
+            <a href="./fund-wallet/index.html" class="mobile-nav-item">
+                <i class="material-icons">account_balance_wallet</i>
+                <span>Fund</span>
+            </a>
+            <a href="javascript:void(0);" onclick="showHistoryOptions()" class="mobile-nav-item">
+                <i class="material-icons">history</i>
+                <span>History</span>
+            </a>
+            <a href="./withdraw-funds/index.html" class="mobile-nav-item">
+                <i class="material-icons">attach_money</i>
+                <span>Withdraw</span>
+            </a>
+            <a href="./profile/index.html" class="mobile-nav-item ">
+                <i class="material-icons">settings</i>
+                <span>Settings</span>
+            </a>
+        </div>
+
+
+</body>
+
+
+</html>
