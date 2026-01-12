@@ -543,16 +543,20 @@
         // UI Helper Functions
         window.showHistoryOptions = function () {
             Swal.fire({
-                title: 'History Options',
+                title: 'Select History',
                 html: `
-                <div style="display:flex; flex-direction:column; gap:10px;">
-                    <a href="../investments/index.html" class="btn indigo">Pending Deposits</a>
-                    <a href="../deposit_list/index.html" class="btn indigo">Approved Deposits</a>
-                    <a href="../market_history/index.html" class="btn indigo">Withdrawal History</a>
-                </div>
-            `,
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <a href="../investments/index.html" class="btn indigo">Pending Deposits</a>
+                <a href="../trade_history/index.html" class="btn indigo">Trade History</a>
+                <a href="../market_history/index.html" class="btn indigo">Pending Withdraws</a>
+                <a href="../deposit_list/index.html" class="btn indigo">Approved Deposits</a>
+                <a href="../withdrawal-history/index.html" class="btn indigo">Withdrawal History</a>
+            </div>
+        `,
                 showConfirmButton: false,
-                background: '#01123c'
+                showCloseButton: true,
+                background: '#01123c',
+                customClass: { title: 'white-text' }
             });
         };
     </script>

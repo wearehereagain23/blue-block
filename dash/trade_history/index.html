@@ -7,6 +7,7 @@
 <head>
     <!-- IMPORTED TABLE -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="../history.css">
     <!-- IMPORTED TABLE END -->
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui, viewport-fit=cover">
@@ -421,94 +422,104 @@
         let currentPage = 0;
         const pageSize = 20;
 
+
+
         async function loadTradeHistory(uuid) {
             const tableContainer = document.getElementById("tableData");
             const emptyState = document.getElementById("empty");
             const tableBody = document.getElementById("cvcx2");
-            const prevBtn = document.getElementById("prevBtn");
-            const nextBtn = document.getElementById("nextBtn");
             const currency = localStorage.getItem("currency") || "$";
 
             const from = currentPage * pageSize;
             const to = from + pageSize - 1;
 
-            // Fetch data and get the exact count of total rows
-            const { data, error, count } = await supabase
-                .from('trade_history')
-                .select('*', { count: 'exact' })
-                .eq('uuid', uuid)
-                .order('created_at', { ascending: false })
-                .range(from, to);
+            try {
+                const { data, error, count } = await supabase
+                    .from('trade_history')
+                    .select('*', { count: 'exact' })
+                    .eq('uuid', uuid)
+                    .order('created_at', { ascending: false })
+                    .range(from, to);
 
-            if (error) {
-                console.error('Error fetching trade data:', error.message);
-                return;
-            }
+                if (error) throw error;
 
-            if (data && data.length > 0) {
-                emptyState.classList.add("hide");
-                tableContainer.classList.remove("hide");
+                if (data && data.length > 0) {
+                    emptyState.classList.add("hide");
+                    tableContainer.classList.remove("hide");
+                    tableBody.innerHTML = "";
 
-                tableBody.innerHTML = "";
-                data.forEach(doc => {
-                    const shortId = doc.id.substring(0, 8); // Shorten ID
-                    const dateObj = new Date(doc.created_at);
-                    const readableDate = dateObj.toLocaleDateString('en-US', {
-                        month: 'short', day: '2-digit', year: 'numeric',
-                        hour: '2-digit', minute: '2-digit'
+                    data.forEach(doc => {
+                        // 1. Truncate ID
+                        const shortId = doc.id.substring(0, 8).toUpperCase();
+
+                        // 2. Format Currency
+                        const investment = parseFloat(doc.amount || 0).toLocaleString();
+                        const profitVal = parseFloat(doc.profit || 0);
+                        const currency = localStorage.getItem("currency") || "$";
+
+                        // 3. Determine Styling
+                        let resultHTML = "";
+                        let statusHTML = "";
+
+                        if (profitVal > 0) {
+                            // PROFITABLE TRADE
+                            resultHTML = `<span class="hist-profit-badge">+${currency}${profitVal.toLocaleString()}</span>`;
+                            statusHTML = `<span class="hist-badge hist-completed outcome-pill">▲ WIN</span>`;
+                        } else if (profitVal < 0) {
+                            // LOSS TRADE
+                            resultHTML = `<span class="hist-loss-badge">-${currency}${Math.abs(profitVal).toLocaleString()}</span>`;
+                            statusHTML = `<span class="hist-badge hist-failed outcome-pill">▼ LOSS</span>`;
+                        } else {
+                            // BREAK EVEN
+                            resultHTML = `<span style="color:#9e9e9e; font-weight:700;">${currency}0.00</span>`;
+                            statusHTML = `<span class="hist-badge outcome-pill" style="background:#f5f5f5; color:#616161;">● DRAW</span>`;
+                        }
+
+                        const row = `
+    <tr>
+        <td data-label="Trade ID"><code style="font-size:12px;">#${shortId}</code></td>
+        <td data-label="Date">${new Date(doc.created_at).toLocaleDateString()}</td>
+        <td data-label="Asset"><span style="font-weight:600;">${doc.asset}</span></td>
+        <td data-label="Investment" class="hist-amount-bold">${currency}${investment}</td>
+        <td data-label="Profit/Loss">${resultHTML}</td>
+        <td data-label="Outcome">${statusHTML}</td>
+    </tr>`;
+
+                        tableBody.insertAdjacentHTML('beforeend', row);
                     });
+                    // Update Pagination (Keep your existing logic)
+                    document.getElementById("pageInfo").innerText = `Page ${currentPage + 1}`;
+                    document.getElementById("prevBtn").style.display = (currentPage === 0) ? 'none' : 'inline-block';
+                    const isAtEnd = (from + data.length) >= count;
+                    document.getElementById("nextBtn").style.display = isAtEnd ? 'none' : 'inline-block';
 
-                    const profitValue = parseFloat(doc.profit);
-                    const statusText = profitValue >= 0 ? 'Profit' : 'Lose';
-                    const statusColor = profitValue >= 0 ? 'green' : 'red';
-
-                    const row = `
-            <tr>
-                <td class="cell" style="font-family: monospace;">#${shortId}</td>
-                <td class="cell">${readableDate}</td>
-                <td class="cell">${currency}${doc.amount}</td>
-                <td class="cell"><span class="blue-text text-darken-2">${doc.asset}</span></td>
-                <td class="cell">
-                    <span class="badge ${statusColor} white-text" style="border-radius:4px; min-width: 70px; float:none !important; display:inline-block;">
-                        ${statusText}
-                    </span>
-                </td>
-            </tr>`;
-                    tableBody.insertAdjacentHTML('beforeend', row);
-                });
-
-                // Update Page Info text
-                document.getElementById("pageInfo").innerText = `Page ${currentPage + 1}`;
-
-                // --- NEW CONDITIONAL BUTTON LOGIC ---
-
-                // 1. Show/Hide Previous Button: Only show if we are NOT on the first page
-                if (currentPage === 0) {
-                    prevBtn.style.display = 'none';
-                } else {
-                    prevBtn.style.display = 'inline-block';
-                    prevBtn.disabled = false;
-                }
-
-                // 2. Show/Hide Next Button: 
-                // Hide if we have reached the end of the history (current offset + items shown >= total count)
-                const isAtEnd = (from + data.length) >= count;
-                if (isAtEnd) {
-                    nextBtn.style.display = 'none';
-                } else {
-                    nextBtn.style.display = 'inline-block';
-                }
-
-            } else {
-                if (currentPage === 0) {
+                } else if (currentPage === 0) {
                     emptyState.classList.remove("hide");
                     tableContainer.classList.add("hide");
                 }
+            } catch (err) {
+                console.error('Fetch Error:', err.message);
             }
         }
-        // Run initialization
+
         initializeTradePage();
 
+
+        window.nextPage = function () {
+            currentPage++;
+            const userId = AuthService.getSession();
+            loadTradeHistory(userId);
+            window.scrollTo(0, 0); // Scroll to top to see new data
+        };
+
+        window.prevPage = function () {
+            if (currentPage > 0) {
+                currentPage--;
+                const userId = AuthService.getSession();
+                loadTradeHistory(userId);
+                window.scrollTo(0, 0);
+            }
+        };
 
 
         window.showHistoryOptions = function () {
@@ -1055,130 +1066,49 @@
     <!-- END: SideNav-->
     <div id="main">
         <div class="row">
-            <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
-            <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
-                <!-- Search for small screen-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 m6 l6">
-                            <h5 class="breadcrumbs-title mt-0 mb-0"><span>Trade History</span></h5>
-                            <ol class="breadcrumbs mb-0">
-                                <li class="breadcrumb-item" style="color: #fff;">Home
-                                </li>
-                                <li class="breadcrumb-item active" style="color: #fff;">Trade History
-                                </li>
-                            </ol>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
             <div class="col s12">
-                <div class="container">
-                    <div class="section section-data-tables">
+                <div class="history-container">
 
-                        <!-- DataTables example -->
-                        <div class="row">
-                            <div class="col s12 m12 l12">
-                                <div id="button-trigger" class="card card card-default scrollspy">
-                                    <div class="card-content">
-
-                                        <style>
-                                            @media only screen and (max-width: 600px) {
-
-                                                /* Remove parent padding so table can touch edges if needed */
-                                                .card {
-                                                    margin-left: 15%;
-                                                }
-                                            }
-                                        </style>
-
-                                        <!-- start here-->
-                                        <div class="" id="empty">
-                                            <div class="" style="padding: 10px 2px;">
-
-                                                <div class="row">
-                                                    <div class="col s12 m8 offset-m2">
-                                                        <div class="card gradient-shadow al-stef border-radius-3">
-                                                            <div class="card-content center">
-                                                                <img src="../trade_history/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
-                                                                    alt="images" class="width-40" />
-                                                                <h5 class="white-text lighten-4">Empty Trade list</h5>
-                                                                <p class="white-text lighten-4">No Trade History Found
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- SPINNER DIV -->
-                                        <div id="spinnerModal" class="spinner-modal" style="display: none;">
-                                            <div class="spinner-content">
-                                                <div class="spinner"></div>
-                                                <p>Loading, please wait...</p>
-                                            </div>
-                                        </div>
-                                        <!-- SPINNER DIV -->
-
-
-
-                                        <!-- IMPORTED TABLE -->
-
-                                        <div class="limiter hide" id="tableData">
-                                            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                                                <table class="table highlight centered">
-                                                    <thead>
-                                                        <tr class="header">
-                                                            <th class="cell">ID</th>
-                                                            <th class="cell">Date / Time</th>
-                                                            <th class="cell">Amount</th>
-                                                            <th class="cell">Market</th>
-                                                            <th class="cell">Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="cvcx2">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <div class="pagination-container center-align"
-                                                style="margin-top: 25px; padding-bottom: 30px; display: flex; justify-content: center; align-items: center; gap: 15px;">
-                                                <button id="prevBtn" class="btn indigo" style="display: none;">
-                                                    <i class="material-icons left">chevron_left</i> Previous
-                                                </button>
-
-                                                <span id="pageInfo" class="white-text"
-                                                    style="font-weight: bold; font-size: 1.1rem;">Page 1</span>
-
-                                                <button id="nextBtn" class="btn indigo" style="display: none;">
-                                                    Next <i class="material-icons right">chevron_right</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!-- IMPORTED TABLE END -->
-
-
-                                        <!-- end here -->
-
-
-
-
-                                    </div>
-                                </div>
+                    <div id="empty" class="hist-empty-state">
+                        <div class="hist-empty-card">
+                            <div class="hist-icon-wrapper">
+                                <img src="../investments/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
+                                    alt="Empty">
                             </div>
+                            <h5 class="hist-title">No Trade Activity</h5>
+                            <p class="hist-subtitle">Your trading floor is currently empty. Start trading to see your
+                                performance history here.</p>
+                            <a href="../index.html" class="hist-btn-primary">Back to Dashboard</a>
                         </div>
+                    </div>
 
+                    <div id="tableData" class="hist-table-wrapper hide">
+                        <table class="hist-modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Trade ID</th>
+                                    <th>Date</th>
+                                    <th>Asset</th>
+                                    <th>Investment</th>
+                                    <th>Profit/Loss</th>
+                                    <th>Outcome</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cvcx2">
+                            </tbody>
+                        </table>
+                    </div>
 
-                    </div><!-- START RIGHT SIDEBAR NAV -->
+                    <div class="pagination-controls"
+                        style="text-align: center; margin-top: 20px; padding-bottom: 20px;">
+                        <button id="prevBtn" onclick="prevPage()" class="btn-small hist-btn-primary"
+                            style="display:none;">Previous</button>
+                        <span id="pageInfo" style="margin: 0 15px; font-weight: bold; color: #01123c;">Page 1</span>
+                        <button id="nextBtn" onclick="nextPage()" class="btn-small hist-btn-primary"
+                            style="display:none;">Next</button>
+                    </div>
 
                 </div>
-                <div class="content-overlay"></div>
             </div>
         </div>
     </div>

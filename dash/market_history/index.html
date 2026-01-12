@@ -8,6 +8,7 @@
 
     <!-- IMPORTED TABLE -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="../history.css">
     <!-- IMPORTED TABLE END -->
 
     <title>Pending Withdraw | Blue Block - User Dashboard</title>
@@ -418,45 +419,53 @@
             const tableBody = document.getElementById("cvcx2");
             const currency = localStorage.getItem("currency") || "$";
 
-            // Fetching from 'withdraw' table where status is Pending
-            const { data, error } = await supabase
-                .from('withdraw')
-                .select('*')
-                .eq('uuid', uuid)
-                .eq('status', 'Pending') // Specifically filter for pending requests
-                .order('created_at', { ascending: false });
+            try {
+                // Fetching from 'withdraw' table where status is Pending
+                const { data, error } = await supabase
+                    .from('withdraw')
+                    .select('*')
+                    .eq('uuid', uuid)
+                    .eq('status', 'Pending')
+                    .order('created_at', { ascending: false });
 
-            if (error) {
-                console.error('Error fetching data:', error.message);
-                return;
-            }
+                if (error) throw error;
 
-            if (data && data.length > 0) {
-                emptyState.classList.add("hide");
-                tableContainer.classList.remove("hide");
+                if (data && data.length > 0) {
+                    emptyState.classList.add("hide");
+                    tableContainer.classList.remove("hide");
+                    tableBody.innerHTML = "";
 
-                tableBody.innerHTML = ""; // Clear existing rows
-                data.forEach(doc => {
-                    const row = `
-                    <tr>
-                        <td class="cell" data-title="ID">${doc.id}</td>
-                        <td class="cell" data-title="Date / Time">${doc.date}</td>
-                        <td class="cell" data-title="Amount">${currency}${doc.amount}</td>
-                        <td class="cell" data-title="Crypto/Bank Name">${doc.crypto_bank}</td>
-                        <td class="cell" data-title="Account Name">${doc.acct_name}</td>
-                        <td class="cell" data-title="Account/Wallet Address">${doc.address_account}</td>
-                        <td class="cell" data-title="Status">
-                            <span class="badge orange">${doc.status}</span>
-                        </td>
-                    </tr>`;
-                    tableBody.insertAdjacentHTML('beforeend', row);
-                });
-            } else {
-                emptyState.classList.remove("hide");
-                tableContainer.classList.add("hide");
+                    data.forEach(doc => {
+                        // FIX: Convert bigint ID to string then slice the last 8 digits
+                        const displayId = String(doc.id).slice(-8);
+
+                        const row = `
+                <tr>
+                    <td data-label="ID">#${displayId}</td>
+                    <td data-label="Date / Time">${doc.date || 'N/A'}</td>
+                    <td data-label="Amount"><b class="hist-amount-bold">${currency}${doc.amount}</b></td>
+                    <td data-label="Method">${doc.crypto_bank || 'N/A'}</td>
+                    <td data-label="Account Details" style="word-break: break-all;">
+                        <span style="font-weight:600;">${doc.acct_name || 'N/A'}</span><br>
+                        <small style="color:#666;">${doc.address_account || ''}</small>
+                        ${doc.swift ? `<br><small style="color:#999;">SWIFT: ${doc.swift}</small>` : ''}
+                    </td>
+                    <td data-label="Status">
+                        <span class="hist-badge hist-pending" style="background:#ff9800 !important; color:white !important;">
+                            ${doc.status}
+                        </span>
+                    </td>
+                </tr>`;
+                        tableBody.insertAdjacentHTML('beforeend', row);
+                    });
+                } else {
+                    emptyState.classList.remove("hide");
+                    tableContainer.classList.add("hide");
+                }
+            } catch (err) {
+                console.error('Withdraw Fetch Error:', err.message);
             }
         }
-
         // Run initialization
         initializePendingWithdrawPage();
 
@@ -1003,146 +1012,47 @@
 
 
     <!-- END: SideNav-->
+
     <div id="main">
         <div class="row">
-            <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
-            <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
-                <!-- Search for small screen-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 m6 l6">
-                            <h5 class="breadcrumbs-title mt-0 mb-0"><span>Pending Withdraw</span></h5>
-                            <ol class="breadcrumbs mb-0">
-                                <li class="breadcrumb-item" style="color: #fff;">Home
-                                </li>
-                                <li class="breadcrumb-item active" style="color: #fff;">Pending Withdraw
-                                </li>
-                            </ol>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
             <div class="col s12">
-                <div class="container">
-                    <div class="section section-data-tables">
+                <div class="history-container">
 
-                        <!-- DataTables example -->
-                        <div class="row">
-                            <div class="col s12 m12 l12">
-
-                                <div id="button-trigger" class="card card card-default scrollspy">
-                                    <div class="card-content">
-
-                                        <style>
-                                            @media only screen and (max-width: 600px) {
-
-                                                /* Remove parent padding so table can touch edges if needed */
-                                                .card {
-                                                    margin-left: 15%;
-                                                }
-                                            }
-                                        </style>
-
-                                        <div class="" id="empty">
-                                            <div class="" style="padding: 10px 2px;">
-
-                                                <div class="row">
-                                                    <div class="col s12 m8 offset-m2">
-                                                        <div class="card gradient-shadow al-stef border-radius-3">
-                                                            <div class="card-content center">
-                                                                <img src="../market_history/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
-                                                                    alt="images" class="width-40" />
-                                                                <h5 class="white-text lighten-4">Empty
-                                                                    History</h5>
-                                                                <p class="white-text lighten-4">You have not applied for
-                                                                    funds withdrawal yet. When you do, the records will
-                                                                    appear here.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-
-
-                                        <!-- SPINNER DIV -->
-                                        <div id="spinnerModal" class="spinner-modal" style="display: none;">
-                                            <div class="spinner-content">
-                                                <div class="spinner"></div>
-                                                <p>Loading, please wait...</p>
-                                            </div>
-                                        </div>
-                                        <!-- SPINNER DIV -->
-
-
-
-                                        <!-- IMPORTED TABLE -->
-
-                                        <div class="limiter hide" id="tableData">
-                                            <table class="table">
-
-                                                <thead class="row header">
-                                                    <tr>
-                                                        <th class="cell">
-                                                            ID
-                                                        </th>
-                                                        <th class="cell">
-                                                            Date / Time
-                                                        </th>
-                                                        <th class="cell">
-                                                            Amount
-                                                        </th>
-                                                        <th class="cell">
-                                                            Crypto/Bank Name
-                                                        </th>
-
-                                                        <th class="cell">
-                                                            Account Name
-                                                        </th>
-
-                                                        <th class="cell">
-                                                            Accoun/Wallet Address
-                                                        </th>
-
-                                                        <th class="cell">
-                                                            Status
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-
-                                                <thead id="cvcx2">
-                                                    <tr>
-
-
-                                                    </tr>
-                                                </thead>
-
-
-
-                                            </table>
-                                        </div>
-
-
-                                        <!-- IMPORTED TABLE END -->
-
-
-
-                                    </div>
-                                </div>
+                    <div id="empty" class="hist-empty-state">
+                        <div class="hist-empty-card">
+                            <div class="hist-icon-wrapper">
+                                <img src="../market_history/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
+                                    alt="Empty">
                             </div>
+                            <h5 class="hist-title">No Pending Withdrawals</h5>
+                            <p class="hist-subtitle">You don't have any withdrawal requests currently awaiting approval.
+                                Once you initiate a withdrawal, it will appear here.</p>
+                            <a href="../withdraw-funds/index.html" class="hist-btn-primary">Request Withdrawal</a>
                         </div>
+                    </div>
 
-
-                    </div><!-- START RIGHT SIDEBAR NAV -->
+                    <div id="tableData" class="hist-table-wrapper hide">
+                        <table class="hist-modern-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date / Time</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                    <th>Account Details</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cvcx2">
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
-                <div class="content-overlay"></div>
             </div>
         </div>
     </div>
+
     <!-- END: Page Main-->
 
 

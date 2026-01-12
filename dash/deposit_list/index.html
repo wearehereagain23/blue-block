@@ -33,11 +33,37 @@
         href="../deposit_list/index/secured/app-assets/css/pages/data-tables.min.css">
 
     <link rel="stylesheet" type="text/css" href="../deposit_list/index/secured/app-assets/css/custom/custom.css">
+    <link rel="stylesheet" type="text/css" href="../history.css">
 
 
 
 
     <style>
+        /* --- ONLY INJECT THESE RULES TO FIX IOS OVERLAP --- */
+
+        /* This pushes the navy background behind the battery/clock */
+        .page-topbar {
+            padding-top: env(safe-area-inset-top, 0px) !important;
+            background: #01123c !important;
+            height: auto !important;
+        }
+
+        /* This pushes the actual content area down so it doesn't hide */
+        #main {
+            padding-top: calc(64px + env(safe-area-inset-top, 0px)) !important;
+        }
+
+        /* This is the "Shield" to ensure the navy color is solid at the top */
+        .ios-status-shield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: env(safe-area-inset-top, 0px);
+            background: #01123c;
+            z-index: 2000;
+        }
+
         th {
             font-weight: 600 !important;
             color: #01123c !important;
@@ -398,7 +424,7 @@
                 .from('history')
                 .select('*')
                 .eq('uuid', uuid)
-                .eq('status', 'Complete') // Matches the 'Complete' status we set in the insert logic
+                .eq('status', 'Complete')
                 .order('created_at', { ascending: false });
 
             if (error) {
@@ -407,27 +433,31 @@
             }
 
             if (data && data.length > 0) {
+                // Show table container, hide empty state
                 emptyState.classList.add("hide");
                 tableContainer.classList.remove("hide");
 
                 tableBody.innerHTML = ""; // Clear existing rows
+
                 data.forEach(doc => {
-                    // Mapping Mismatch Fixes:
-                    // 1. doc.id is a BigInt (number), not a string/uuid, so no .substring()
                     const displayId = doc.id;
+                    const cryptoDisplay = doc.cryptoCurrnecy || 'N/A'; // Matching your schema typo
 
-                    // 2. doc.cryptoCurrnecy matches your schema typo exactly
-                    const cryptoDisplay = doc.cryptoCurrnecy || 'N/A';
+                    // Determine status badge color
+                    let badgeClass = 'hist-pending';
+                    if (doc.status === 'Complete' || doc.status === 'Approved') badgeClass = 'hist-completed';
+                    if (doc.status === 'Failed' || doc.status === 'Declined') badgeClass = 'hist-failed';
 
+                    // IMPORTANT: data-label is required for the mobile CSS to work
                     const row = `
             <tr>
-                <td class="cell" data-title="ID">#${displayId}</td>
-                <td class="cell" data-title="Date / Time">${doc.date || 'N/A'}</td>
-                <td class="cell" data-title="Amount">${currency}${doc.amount}</td>
-                <td class="cell" data-title="Wallet">${doc.address || 'N/A'}</td>
-                <td class="cell" data-title="Crypto">${cryptoDisplay}</td>
-                <td class="cell" data-title="Status">
-                    <span class="badge green white-text" style="padding: 5px 10px; border-radius: 4px;">
+                <td data-label="ID">#${displayId}</td>
+                <td data-label="Date / Time">${doc.date || 'N/A'}</td>
+                <td data-label="Amount"><b style="color:#2e7d32">${currency}${doc.amount}</b></td>
+                <td data-label="Wallet" style="word-break: break-all;">${doc.address || 'N/A'}</td>
+                <td data-label="Crypto">${cryptoDisplay}</td>
+                <td data-label="Status">
+                    <span class="hist-badge ${badgeClass}">
                         ${doc.status}
                     </span>
                 </td>
@@ -435,11 +465,11 @@
                     tableBody.insertAdjacentHTML('beforeend', row);
                 });
             } else {
+                // Show empty state, hide table container
                 emptyState.classList.remove("hide");
                 tableContainer.classList.add("hide");
             }
         }
-        // Run initialization
         initializeApprovedDepositPage();
 
 
@@ -587,6 +617,7 @@
     class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 2-columns   "
     data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
 
+    <div class="ios-status-shield"></div>
 
 
     <!-- BEGIN: Header-->
@@ -983,145 +1014,50 @@
     <!-- END: SideNav--> <!-- END: SideNav-->
 
 
-
-    <!-- END: SideNav-->
     <div id="main">
-        <div class="row">
-            <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
-            <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
-                <!-- Search for small screen-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 m6 l6">
-                            <h5 class="breadcrumbs-title mt-0 mb-0"><span>Approved Deposit</span></h5>
-                            <ol class="breadcrumbs mb-0">
-                                <li class="breadcrumb-item" style="color: #fff;">Home
-                                </li>
-                                <li class="breadcrumb-item active" style="color: #fff;">Approved Deposit
-                                </li>
-                            </ol>
-                        </div>
+        <div class="history-container">
 
+            <div id="empty" class="hist-empty-state">
+                <div class="hist-empty-card">
+                    <div class="hist-icon-wrapper">
+                        <img src="../deposit_list/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
+                            alt="Empty">
                     </div>
+                    <h5 class="hist-title">No Transactions Found</h5>
+                    <p class="hist-subtitle">You haven't made any deposits yet. Your investment activity will appear
+                        here
+                        once you fund your account.</p>
+                    <a href="../fund-wallet/index.html" class="hist-btn-primary">Deposit Now</a>
                 </div>
             </div>
-            <div class="col s12">
-                <div class="container">
-                    <div class="section section-data-tables">
 
-                        <!-- DataTables example -->
-                        <div class="row">
-                            <div class="col s12 m12 l12">
-                                <div id="button-trigger" class="card card-default scrollspy">
-                                    <div class="card-content">
-
-                                        <style>
-                                            @media only screen and (max-width: 600px) {
-
-                                                /* Remove parent padding so table can touch edges if needed */
-                                                .card {
-                                                    margin-left: 15%;
-                                                }
-                                            }
-                                        </style>
-
-                                        <!-- start here-->
-                                        <div class="" id="empty">
-                                            <div class="" style="padding: 10px 2px;">
-
-                                                <div class="row">
-                                                    <div class="col s12 m8 offset-m2">
-                                                        <div class="card gradient-shadow al-stef border-radius-3">
-                                                            <div class="card-content center">
-                                                                <img src="../deposit_list/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
-                                                                    alt="images" class="width-40" />
-                                                                <h5 class="white-text lighten-4">Empty list
-                                                                </h5>
-                                                                <p class="white-text lighten-4">You have not made any
-                                                                    deposit yet. Please make deposit and start investing
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-
-
-                                        <!-- SPINNER DIV -->
-                                        <div id="spinnerModal" class="spinner-modal" style="display: none;">
-                                            <div class="spinner-content">
-                                                <div class="spinner"></div>
-                                                <p>Loading, please wait...</p>
-                                            </div>
-                                        </div>
-                                        <!-- SPINNER DIV -->
-
-
-
-                                        <!-- IMPORTED TABLE -->
-
-                                        <div class="limiter hide" id="tableData">
-                                            <table class="table">
-
-                                                <thead class="row header">
-                                                    <tr>
-                                                        <th class="cell">
-                                                            ID
-                                                        </th>
-                                                        <th class="cell">
-                                                            Date / Time
-                                                        </th>
-                                                        <th class="cell">
-                                                            Amount
-                                                        </th>
-                                                        <th class="cell">
-                                                            Wallet
-                                                        </th>
-                                                        <th class="cell">
-                                                            Crypto
-                                                        </th>
-                                                        <th class="cell">
-                                                            Status
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-
-                                                <thead id="cvcx2">
-                                                    <tr>
-
-
-                                                    </tr>
-                                                </thead>
-
-
-
-                                            </table>
-                                        </div>
-
-
-                                        <!-- IMPORTED TABLE END -->
-
-                                        <!-- end here -->
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div><!-- START RIGHT SIDEBAR NAV -->
-
-                </div>
-                <div class="content-overlay"></div>
+            <div id="tableData" class="hist-table-wrapper hide">
+                <table class="hist-modern-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date / Time</th>
+                            <th>Amount</th>
+                            <th>Wallet</th>
+                            <th>Crypto</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cvcx2">
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </div>
-    <!-- END: Page Main-->
+
+
+    <div id="spinnerModal" class="spinner-modal" style="display: none;">
+        <div class="spinner-content">
+            <div class="spinner"></div>
+            <p>Fetching history...</p>
+        </div>
+    </div>
 
 
     <footer style="background: #01123c !important;"

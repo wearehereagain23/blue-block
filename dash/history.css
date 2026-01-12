@@ -1,0 +1,383 @@
+/* history.css */
+
+.hist-modern-table thead {
+    /* Keeping your preferred deep navy background */
+    background: #01123c !important;
+}
+
+.hist-modern-table thead th {
+    /* This specifically overrides the global 'th' color: #01123c 
+       that is currently making your text invisible against the navy bg
+    */
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none !important;
+    padding: 15px 10px !important;
+}
+
+/* Ensure table cells have proper contrast on desktop */
+.hist-modern-table tbody td {
+    color: #334155 !important;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* 2. Tell the #main container to grow and fill all available space */
+#main {
+    flex: 1 0 auto;
+    /* This pushes the footer to the bottom */
+}
+
+/* 3. Footer reset to ensure it doesn't shrink */
+footer.page-footer {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+/* 4. Fix History Container Desktop Padding */
+.history-container {
+    padding: 20px;
+    width: 100%;
+    /* Ensure it doesn't overflow horizontally */
+    box-sizing: border-box;
+}
+
+@media only screen and (min-width: 993px) {
+    .history-container {
+        /* Add extra breathing room from the sidebar on large screens */
+        padding: 30px;
+    }
+}
+
+.hist-table-wrapper {
+    max-width: 1200px;
+    /* Prevents the table from being too wide on huge monitors */
+    margin: 0 auto;
+    /* Centers the table on desktop */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+:root {
+    --hist-navy: #01123c;
+    --hist-blue: #2196f3;
+    --hist-border: rgba(255, 255, 255, 0.1);
+    --hist-text-dim: #94a3b8;
+}
+
+.history-container {
+    padding: 10px;
+    width: 100%;
+}
+
+/* --- EMPTY STATE REDESIGN --- */
+.hist-empty-state {
+    display: flex;
+    justify-content: center;
+    padding: 40px 10px;
+}
+
+.hist-empty-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    width: 100%;
+}
+
+.hist-icon-wrapper img {
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.hist-title {
+    color: var(--hist-navy);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hist-subtitle {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.hist-btn-primary {
+    background: var(--hist-navy);
+    color: white !important;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+/* --- TABLE REDESIGN --- */
+.hist-table-wrapper {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.hist-modern-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.hist-modern-table thead {
+    background: var(--hist-navy);
+    color: white;
+}
+
+.hist-modern-table th {
+    padding: 16px;
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hist-modern-table td {
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 14px;
+}
+
+/* Badge Styles */
+.hist-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.hist-completed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.hist-pending {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.hist-failed {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* --- MOBILE RESPONSIVENESS (CARD VIEW) --- */
+@media screen and (max-width: 768px) {
+    .hist-modern-table thead {
+        display: none;
+        /* Hide headers on mobile */
+    }
+
+    .hist-modern-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 10px;
+        background: #fff;
+    }
+
+    .hist-modern-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 10px 5px;
+        border-bottom: 1px solid #f8fafc;
+    }
+
+    .hist-modern-table td:last-child {
+        border-bottom: 0;
+    }
+
+    /* Inject labels before data on mobile */
+    .hist-modern-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--hist-navy);
+        text-transform: uppercase;
+        font-size: 12px;
+        float: left;
+    }
+}
+
+/* history.css - Global Fixes */
+
+/* 1. FORCE HEADER TEXT VISIBILITY ON DESKTOP */
+.hist-modern-table thead th {
+    color: #ffffff !important;
+    /* Force white text */
+    background-color: #01123c !important;
+    /* Force Navy Background */
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 15px 10px !important;
+    border: none !important;
+}
+
+/* 2. STICKY FOOTER LOGIC */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#main {
+    flex: 1 0 auto;
+    /* Pushes footer to bottom */
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+/* 3. DESKTOP ALIGNMENT FIX */
+@media only screen and (min-width: 993px) {
+    .history-container {
+        padding: 30px !important;
+        margin-left: 0;
+        /* Let #main padding handle the sidebar gap */
+    }
+}
+
+/* 4. MOBILE ADJUSTMENT */
+@media only screen and (max-width: 600px) {
+    .history-container {
+        padding: 10px !important;
+    }
+}
+
+
+/* history.css - Global Fixes */
+
+/* Fix Desktop Sidebar Overlap */
+@media only screen and (min-width: 993px) {
+    #main {
+        padding-left: 260px !important;
+        /* Forces content to clear fixed sidebar */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .history-container {
+        padding: 40px !important;
+        margin-top: 20px;
+    }
+}
+
+/* Fix Table Header Text Visibility */
+.hist-modern-table thead th {
+    color: #ffffff !important;
+    /* Force white text over navy background */
+    background-color: #01123c !important;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 18px 10px !important;
+    border: none !important;
+    font-weight: 600 !important;
+}
+
+/* Ensure Footer Sticks to Bottom */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#main {
+    flex: 1 0 auto;
+    /* This pushes the footer down */
+}
+
+.page-footer {
+    flex-shrink: 0;
+}
+
+
+/* history.css - Trade Specifics */
+
+.hist-profit {
+    color: #2e7d32 !important;
+    /* Material Green */
+    font-weight: bold;
+}
+
+.hist-loss {
+    color: #d32f2f !important;
+    /* Material Red */
+    font-weight: bold;
+}
+
+/* Ensure the table layout is optimized for the missing column */
+@media screen and (min-width: 993px) {
+
+    .hist-modern-table th,
+    .hist-modern-table td {
+        width: 16.6%;
+        /* Distribute evenly for 6 columns */
+    }
+}
+
+/* Fix Desktop Sidebar Overlap */
+@media only screen and (min-width: 993px) {
+    #main {
+        padding-left: 260px !important;
+    }
+
+    .history-container {
+        padding: 40px !important;
+    }
+}
+
+/* Table Header Text Visibility (White on Navy) */
+.hist-modern-table thead th {
+    color: #ffffff !important;
+    background-color: #01123c !important;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 18px 10px !important;
+}
+
+/* Mobile Card View Logic */
+@media screen and (max-width: 600px) {
+    .hist-modern-table thead {
+        display: none;
+    }
+
+    .hist-modern-table td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .hist-modern-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}

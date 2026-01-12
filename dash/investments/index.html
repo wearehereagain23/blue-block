@@ -7,6 +7,7 @@
 <head>
     <!-- IMPORTED TABLE -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="../history.css">
     <!-- IMPORTED TABLE END -->
 
     <meta name="viewport"
@@ -175,19 +176,20 @@
 
                 tableBody.innerHTML = ""; // Clear existing rows
                 data.forEach(doc => {
+
                     const row = `
-                    <tr>
-                        <td class="cell" data-title="ID">${doc.id}</td>
-                        <td class="cell" data-title="Date / Time">${doc.date}</td>
-                        <td class="cell" data-title="Amount">${currency}${doc.amount}</td>
-                        <td class="cell" data-title="Wallet">${doc.address}</td>
-                        <td class="cell" data-title="Crypto">${doc.crypto}</td>
-                        <td class="cell" data-title="Status">
-                            <span class="badge ${doc.status === 'pending' ? 'orange' : 'green'}">
-                                ${doc.status}
-                            </span>
-                        </td>
-                    </tr>`;
+<tr>
+    <td data-label="ID">#${doc.id}</td>
+    <td data-label="Date / Time">${doc.date}</td>
+    <td data-label="Amount"><b style="color:#01123c">${currency}${doc.amount}</b></td>
+    <td data-label="Wallet" style="word-break: break-all;">${doc.address}</td>
+    <td data-label="Crypto">${doc.crypto}</td>
+    <td data-label="Status">
+        <span class="hist-badge hist-pending">
+            ${doc.status}
+        </span>
+    </td>
+</tr>`;
                     tableBody.insertAdjacentHTML('beforeend', row);
                 });
             } else {
@@ -1000,136 +1002,40 @@
     <!-- END: SideNav-->
     <div id="main">
         <div class="row">
-            <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
-            <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
-                <!-- Search for small screen-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 m6 l6">
-                            <h5 class="breadcrumbs-title mt-0 mb-0"><span>Pending Deposit Log</span></h5>
-                            <ol class="breadcrumbs mb-0">
-                                <li class="breadcrumb-item" style="color: #fff;">Home
-                                </li>
-                                <li class="breadcrumb-item active" style="color: #fff;">Pending Deposit Log
-                                </li>
-                            </ol>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
             <div class="col s12">
-                <div class="container">
-                    <div class="section section-data-tables">
+                <div class="history-container">
 
-                        <!-- DataTables example -->
-                        <div class="row">
-                            <div class="col s12 m12 l12">
-                                <div id="button-trigger" class="card card card-default scrollspy">
-                                    <div class="card-content" style="overflow-x:scroll ">
-                                        <style>
-                                            @media only screen and (max-width: 600px) {
-
-                                                /* Remove parent padding so table can touch edges if needed */
-                                                .card {
-                                                    margin-left: 15%;
-                                                }
-                                            }
-                                        </style>
-                                        <!-- start here-->
-                                        <div class="" id="empty">
-                                            <div class="" style="padding: 10px 2px;">
-
-                                                <div class="row">
-                                                    <div class="col s12 m8 offset-m2">
-                                                        <div class="card gradient-shadow al-stef border-radius-3">
-                                                            <div class="card-content center">
-                                                                <img src="../investments/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
-                                                                    alt="images" class="width-40" />
-                                                                <h5 class="white-text lighten-4">Empty Pending Deposit
-                                                                    list
-                                                                </h5>
-                                                                <p class="white-text lighten-4">You have not made any
-                                                                    new deposit yet.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <!-- end here -->
-
-
-                                        <!-- SPINNER DIV -->
-                                        <div id="spinnerModal" class="spinner-modal" style="display: none;">
-                                            <div class="spinner-content">
-                                                <div class="spinner"></div>
-                                                <p>Loading, please wait...</p>
-                                            </div>
-                                        </div>
-                                        <!-- SPINNER DIV -->
-
-
-
-
-                                        <!-- IMPORTED TABLE -->
-
-                                        <div class="limiter hide" id="tableData">
-                                            <table class="table">
-
-                                                <thead class="row header">
-                                                    <tr>
-                                                        <th class="cell">
-                                                            ID
-                                                        </th>
-                                                        <th class="cell">
-                                                            Date / Time
-                                                        </th>
-                                                        <th class="cell">
-                                                            Amount
-                                                        </th>
-                                                        <th class="cell">
-                                                            Wallet
-                                                        </th>
-                                                        <th class="cell">
-                                                            Crypto
-                                                        </th>
-                                                        <th class="cell">
-                                                            Status
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-
-                                                <thead id="cvcx2">
-                                                    <tr>
-
-
-                                                    </tr>
-                                                </thead>
-
-
-
-                                            </table>
-                                        </div>
-
-
-                                        <!-- IMPORTED TABLE END -->
-
-
-
-
-                                    </div>
-                                </div>
+                    <div id="empty" class="hist-empty-state">
+                        <div class="hist-empty-card">
+                            <div class="hist-icon-wrapper">
+                                <img src="../investments/index/secured/app-assets/images/custom-images/undraw_no_data_qbuo.svg"
+                                    alt="Empty">
                             </div>
+                            <h5 class="hist-title">No Pending Deposits</h5>
+                            <p class="hist-subtitle">You don't have any deposits currently awaiting approval. Your
+                                history will appear here once you initiate a transaction.</p>
+                            <a href="../fund-wallet/index.html" class="hist-btn-primary">Make a Deposit</a>
                         </div>
+                    </div>
 
-
-                    </div><!-- START RIGHT SIDEBAR NAV -->
+                    <div id="tableData" class="hist-table-wrapper hide">
+                        <table class="hist-modern-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date / Time</th>
+                                    <th>Amount</th>
+                                    <th>Wallet</th>
+                                    <th>Crypto</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cvcx2">
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
-                <div class="content-overlay"></div>
             </div>
         </div>
     </div>
