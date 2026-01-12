@@ -26,30 +26,32 @@
     <link rel="stylesheet" type="text/css" href="../profile/index/secured/app-assets/css/custom/custom.css">
 
     <style>
-        /* 1. TOP SAFE AREA (Clock/Battery) */
+        /* --- UPDATED RULES TO FIX TOP GAP AND IOS BOTTOM BAR --- */
+
+        /* 1. Fix Top Overlap (Pushes navy behind status bar) */
         .page-topbar {
             padding-top: env(safe-area-inset-top, 0px) !important;
             background: #01123c !important;
             height: auto !important;
         }
 
-        /* 2. FIX "TOO DOWNWARD" CONTENT 
-       Reduced from 64px to 10px to pull the profile cards upward */
+        /* 2. Fix "Too Downward" Content 
+       Reduced from 64px to 5px to pull the profile cards up */
         #main {
-            padding-top: calc(10px + env(safe-area-inset-top, 0px)) !important;
+            padding-top: calc(5px + env(safe-area-inset-top, 0px)) !important;
         }
 
-        /* 3. IOS BOTTOM NAV FIX (Home Indicator Line) */
+        /* 3. Fix Mobile Nav Bar (Pushes it up on iOS) */
         .mobile-bottom-nav {
-            /* Standard height + iOS safe area inset */
-            height: calc(65px + env(safe-area-inset-bottom, 0px)) !important;
+            /* Adds extra padding at the bottom specifically for the iOS line */
             padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+            /* Increases height slightly to keep icons centered */
+            height: calc(65px + env(safe-area-inset-bottom, 0px)) !important;
             display: flex;
             align-items: center;
-            /* Keeps icons centered vertically */
         }
 
-        /* 4. SHIELD AND SIDEBAR ICONS */
+        /* 4. Status Bar Shield */
         .ios-status-shield {
             position: fixed;
             top: 0;
@@ -60,16 +62,10 @@
             z-index: 2000;
         }
 
+        /* Keep your existing icon colors */
         .sidenav li a.collapsible-header>i.material-icons,
         .sidenav li>a>i.material-icons {
             color: #562fa1;
-        }
-
-        /* Hide breadcrumbs on mobile to save even more space */
-        @media only screen and (max-width: 600px) {
-            #breadcrumbs-wrapper {
-                display: none !important;
-            }
         }
     </style>
 
