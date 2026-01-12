@@ -713,6 +713,11 @@
             z-index: 999;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
             border-top: 1px solid #1e88e5;
+            padding-top: 10px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            /* Pushes content above iOS line */
+            height: calc(65px + env(safe-area-inset-bottom));
+            /* Adjusts height dynamically */
         }
 
         .mobile-nav-item {

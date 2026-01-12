@@ -26,45 +26,9 @@
     <link rel="stylesheet" type="text/css" href="../profile/index/secured/app-assets/css/custom/custom.css">
 
     <style>
-        /* --- UPDATED RULES TO FIX TOP GAP AND IOS BOTTOM BAR --- */
-
-        /* 1. Fix Top Overlap (Pushes navy behind status bar) */
-        .page-topbar {
-            padding-top: env(safe-area-inset-top, 0px) !important;
-            background: #01123c !important;
-            height: auto !important;
-        }
-
-        /* 2. Fix "Too Downward" Content 
-       Reduced from 64px to 5px to pull the profile cards up */
-        #main {
-            padding-top: calc(5px + env(safe-area-inset-top, 0px)) !important;
-        }
-
-        /* 3. Fix Mobile Nav Bar (Pushes it up on iOS) */
-        .mobile-bottom-nav {
-            /* Adds extra padding at the bottom specifically for the iOS line */
-            padding-bottom: env(safe-area-inset-bottom, 0px) !important;
-            /* Increases height slightly to keep icons centered */
-            height: calc(65px + env(safe-area-inset-bottom, 0px)) !important;
-            display: flex;
-            align-items: center;
-        }
-
-        /* 4. Status Bar Shield */
-        .ios-status-shield {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: env(safe-area-inset-top, 0px);
-            background: #01123c;
-            z-index: 2000;
-        }
-
-        /* Keep your existing icon colors */
         .sidenav li a.collapsible-header>i.material-icons,
         .sidenav li>a>i.material-icons {
+
             color: #562fa1;
         }
     </style>
@@ -104,12 +68,6 @@
             z-index: 999;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
             border-top: 1px solid #1e88e5;
-
-            padding-top: 10px;
-            padding-bottom: calc(12px + env(safe-area-inset-bottom));
-            /* Pushes content above iOS line */
-            height: calc(65px + env(safe-area-inset-bottom));
-            /* Adjusts height dynamically */
         }
 
         .mobile-nav-item {
@@ -685,8 +643,6 @@
     class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 2-columns   "
     data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
 
-    <!-- <div class="ios-status-shield"></div> -->
-
     <!-- BEGIN: Header-->
 
     <style>
@@ -752,22 +708,6 @@
         jdiv[class^="label_"] {
             display: none !important;
             visibility: hidden !important;
-        }
-
-        /* Fix Jivosite Full Screen Overlap on iOS */
-        #jivo-iframe-container {
-            top: env(safe-area-inset-top, 20px) !important;
-            height: calc(100% - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 0px)) !important;
-        }
-
-        /* Ensure the widget stays above other elements but below the status bar shield */
-        #jivo-iframe-container.jivo-active {
-            z-index: 1000 !important;
-        }
-
-        /* Extra margin specifically for the Jivosite internal header */
-        div[class^="jivo-host"] [class*="container"] {
-            margin-top: env(safe-area-inset-top, 20px) !important;
         }
     </style>
 
