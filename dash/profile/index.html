@@ -1063,7 +1063,6 @@
                                                             <option value="" disabled selected>Select Gender</option>
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
-                                                            <option value="Other">Other</option>
                                                         </select>
                                                         <label class="active"
                                                             style="position:relative; top:0;">Gender</label>
@@ -1228,11 +1227,67 @@
 
     <!-- BEGIN: Footer-->
 
-    <footer style="background: #01123c !important;"
-        class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
+    <style>
+        /* --- STICKY FOOTER FIX --- */
+
+        /* 1. Make the body a flex container */
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        /* 2. Push the footer to the bottom */
+        #main {
+            flex: 1 0 auto;
+        }
+
+        /* --- FOOTER POSITION & COLOR FIX --- */
+
+        /* 1. Reset the footer container */
+        footer.page-footer {
+            background-color: #01123c;
+            /* Your light gray/white background */
+            border-top: 1px solid #e0e0e0;
+            padding: 20px 0 !important;
+            width: 100%;
+            flex-shrink: 0;
+            display: block !important;
+
+            /* Overrides any flex-centering issues */
+        }
+
+        /* 2. Center the text inside the footer */
+        footer.page-footer .footer-copyright {
+            color: white;
+            text-align: center !important;
+            /* Forces text to middle */
+            width: 100%;
+        }
+
+        /* 3. Handle Desktop Sidebar Offset */
+        @media only screen and (min-width: 993px) {
+            footer.page-footer {
+                padding-left: 260px !important;
+                /* Pushes text to the middle of the available space */
+            }
+        }
+
+        /* 4. Ensure the container inside the footer doesn't restrict width */
+        footer.page-footer .container {
+            width: 100% !important;
+            max-width: none !important;
+            text-align: center !important;
+
+        }
+    </style>
+
+    <footer class="page-footer footer footer-static footer-light navbar-border navbar-shadow">
         <div class="footer-copyright">
-            <div class="container" style="text-align: center;"><span>&copy; 2025 <a href="#" target="_blank">Blue
-                        Block</a> All rights reserved.</span></div>
+            <div class="container center-align">
+                <span>&copy; 2025 <a href="#" class="blue-text text-darken-2">Blue Block</a> All rights reserved.</span>
+            </div>
         </div>
     </footer>
 
